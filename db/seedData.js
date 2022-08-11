@@ -10,15 +10,15 @@ const userData = [
 //floorid needed?
 const floorData = [{ name: "1F Trainers' Zone" }];
 
-const itemData = [
-  {
-    name: "Pokeball",
-    description: "throw at pokemon to catch",
-    price: 200,
-    stock: 2000,
-    floorId: 1,
-  },
-];
+// const itemData = [
+//   {
+//     name: "Pokeball",
+//     description: "throw at pokemon to catch",
+//     price: 200,
+//     stock: 2000,
+//     floorId: 1,
+//   },
+// ];
 
 const orderData = [
   {
@@ -49,7 +49,6 @@ const orderItemData = [
 module.exports = {
   userData,
   floorData,
-  itemData,
   orderData,
   reviewData,
   orderItemData,

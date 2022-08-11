@@ -3,11 +3,12 @@ const prisma = require("./prisma");
 const {
   userData,
   floorData,
-  itemData,
   orderData,
   reviewData,
   orderItemData,
 } = require("./seedData");
+
+// const {floors} = require ("./fetchAndSeed")
 
 const dropTables = async () => {
   console.log("dropping tables...");
@@ -90,11 +91,11 @@ const seedDb = async () => {
     const createdFloor = await prisma.Floors.create({ data: floor });
     console.log(createdFloor);
   }
-  console.log("creating Items...");
-  for (const item of itemData) {
-    const createdItem = await prisma.Items.create({ data: item });
-    console.log(createdItem);
-  }
+  // console.log("creating Items...");
+  // for (const item of itemData) {
+  //   const createdItem = await prisma.Items.create({ data: item });
+  //   console.log(createdItem);
+  // }
   console.log("creating Orders...");
   for (const order of orderData) {
     const createdOrder = await prisma.Orders.create({ data: order });

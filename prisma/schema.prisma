@@ -36,7 +36,6 @@ model orderitems {
   items    items?  @relation(fields: [itemId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   orders   orders? @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
-  @@ignore
 }
 
 model orders {
