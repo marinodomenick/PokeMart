@@ -13,10 +13,15 @@
     "start": "node index.js",
     "test": "jest --runInBand"
   },
+  "prisma": {
+    "seed": "node db/seed.js",
+    "seed:dev": "nodemon db/seed.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.2.1",
     "axios": "^0.19.2",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
@@ -24,13 +29,14 @@
     "jest": "^24.9.0",
     "morgan": "^1.10.0",
     "pg": "^8.2.1",
+    "prisma": "^4.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.19",
     "supertest": "^6.2.1"
   },
   "proxy": "http://localhost:4000",

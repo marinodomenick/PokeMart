@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model floors {
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(255)
+  items items[]
+}
+
+model items {
+  id          Int          @id @default(autoincrement())
+  name        String       
+  type        String?      
+  description String?       
+  price       Int
+  stock       Int
+  floorId     Int?
+  imgUrl      String?      
+  floors      floors?      @relation(fields: [floorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orderitems  orderitems[]
+  reviews     reviews[]
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model orderitems {
+  id       Int     @id @default(autoincrement())
+  itemId   Int?
+  orderId  Int?
+  quantity Int
+  items    items?  @relation(fields: [itemId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orders   orders? @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+}
+
+model orders {
+  id              Int          @id @default(autoincrement())
+  userId          Int?
+  isFulfilled     Boolean?     @default(false)
+  totalPrice      Int
+  shippingAddress String       @db.VarChar(255)
+  users           users?       @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orderitems      orderitems[]
+}
+
+model reviews {
+  id      Int     @id @default(autoincrement())
+  itemId  Int?
+  title   String  @db.VarChar(255)
+  content String? @db.VarChar(255)
+  userId  Int?
+  items   items?  @relation(fields: [itemId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users   users?  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  id       Int       @id @default(autoincrement())
+  username String    @unique @db.VarChar(255)
+  password String    @db.VarChar(255)
+  name     String    @db.VarChar(255)
+  address  String    @db.VarChar(255)
+  isAdmin  Boolean?  @default(false)
+  orders   orders[]
+  reviews  reviews[]
+}
