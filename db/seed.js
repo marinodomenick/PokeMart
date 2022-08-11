@@ -2,13 +2,12 @@ const prisma = require("./prisma");
 
 const {
   userData,
-  floorData,
   orderData,
   reviewData,
   orderItemData,
 } = require("./seedData");
 
-// const {floors} = require ("./fetchAndSeed")
+const { seedFloors, fetchAndSeedItems } = require("./fetchAndSeed");
 
 const dropTables = async () => {
   console.log("dropping tables...");
@@ -44,11 +43,11 @@ CREATE TABLE Items (
   id SERIAL PRIMARY KEY,
   name VARCHAR (255) NOT NULL,
   type VARCHAR (255),
-  description VARCHAR (255) NOT NULL,
+  description TEXT,
   price INTEGER NOT NULL,
   stock INTEGER NOT NULL,
   "floorId" INTEGER REFERENCES Floors("id"),
-  "imgUrl" VARCHAR (255)
+  "imgUrl" TEXT
 );
 `;
   //Come back to TotalPrice
@@ -83,32 +82,24 @@ CREATE TABLE OrderItems (
 const seedDb = async () => {
   console.log("creating Users...");
   for (const user of userData) {
-    const createdUser = await prisma.Users.create({ data: user });
+    const createdUser = await prisma.users.create({ data: user });
     console.log(createdUser);
   }
-  console.log("creating Floors...");
-  for (const floor of floorData) {
-    const createdFloor = await prisma.Floors.create({ data: floor });
-    console.log(createdFloor);
-  }
-  // console.log("creating Items...");
-  // for (const item of itemData) {
-  //   const createdItem = await prisma.Items.create({ data: item });
-  //   console.log(createdItem);
-  // }
+  await seedFloors();
+  await fetchAndSeedItems();
   console.log("creating Orders...");
   for (const order of orderData) {
-    const createdOrder = await prisma.Orders.create({ data: order });
+    const createdOrder = await prisma.orders.create({ data: order });
     console.log(createdOrder);
   }
   console.log("creating Reviews...");
   for (const review of reviewData) {
-    const createdReview = await prisma.Reviews.create({ data: review });
+    const createdReview = await prisma.reviews.create({ data: review });
     console.log(createdReview);
   }
   console.log("creating Order Items...");
   for (const orderItem of orderItemData) {
-    const createdOrderItemReview = await prisma.OrderItems.create({
+    const createdOrderItemReview = await prisma.orderitems.create({
       data: orderItem,
     });
     console.log(createdOrderItemReview);
@@ -119,7 +110,7 @@ const initDb = async () => {
   try {
     await dropTables();
     await createTables();
-    // await seedDb();
+    await seedDb();
   } catch (error) {
     console.error(error);
   } finally {

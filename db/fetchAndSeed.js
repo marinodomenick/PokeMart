@@ -12,26 +12,26 @@ const fetchAndSeedItems = async () => {
   const items = await Promise.all(
     data.results.map(async (item) => {
       const { data } = await axios.get(item.url);
-      console.log("Single Item from API", data);
+      // console.log("Single Item from API", data);
       const newItemObj = {
         name: data.name,
         type: data.category.name,
         description: data?.effect_entries[0]?.effect || null,
         price: data.cost,
         stock: 100,
-        imageUrl: data.sprites.default,
+        imgUrl: data.sprites.default,
         floorId: categoryToFloor(data.category.name),
       };
-      console.log("Single item after reformatting", newItemObj);
+      // console.log("Single item after reformatting", newItemObj);
       return newItemObj;
     })
   );
   console.log("...seeding items");
   console.log("items from api", items);
-  //   const itemsInDb = await Promise.all(
-  //     items.map((item) => prisma.items.create({ data: item }))
-  //   );
-  //   console.log(itemsInDb);
+  const itemsInDb = await Promise.all(
+    items.map((item) => prisma.items.create({ data: item }))
+  );
+  console.log(itemsInDb);
 };
 
 function categoryToFloor(category) {
@@ -161,5 +161,7 @@ async function seedFloors() {
   );
 }
 
-// seedFloors();
-fetchAndSeedItems();
+module.exports = {
+  seedFloors,
+  fetchAndSeedItems,
+};

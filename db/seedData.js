@@ -8,7 +8,7 @@ const userData = [
   },
 ];
 //floorid needed?
-const floorData = [{ name: "1F Trainers' Zone" }];
+// const floorData = [{ name: "1F Trainers' Zone" }];
 
 // const itemData = [
 //   {
@@ -48,7 +48,7 @@ const orderItemData = [
 
 module.exports = {
   userData,
-  floorData,
+
   orderData,
   reviewData,
   orderItemData,
