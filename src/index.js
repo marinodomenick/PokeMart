@@ -4,7 +4,16 @@ import { App } from "./components";
 // css stylesheets can be created for each component
 // place them in the src/style directory, and import them like this:
 import "./style/index.css";
+import { BrowserRouter } from "react-router-dom";
+import ItemsProvider from "./components/ItemsProvider";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <ItemsProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ItemsProvider>,
+  document.getElementById("root")
+);
 
 // test comment
