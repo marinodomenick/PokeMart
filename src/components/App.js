@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
@@ -6,9 +6,13 @@ import { Route, Routes } from "react-router-dom";
 import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 import Items from "./Items";
+import itemsContext from "../Context/ItemsContext";
+import useItems from "../Hooks/useItems";
+import SingleItem from "./SingleItem";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  // const [items, setItems] = useItems([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -25,12 +29,15 @@ const App = () => {
   }, []);
 
   return (
+    // console.log(items, "Items"),
     <>
-      <div className="app-container">
+      {/* <div className="app-container"> */}
+      <div>
         <h1>Hello, World!</h1>
         <p>API Status: {APIHealth}</p>
         <Routes>
           <Route path="/items" element={<Items />} />
+          <Route path="/items/:id" element={<SingleItem />} />
         </Routes>
       </div>
     </>

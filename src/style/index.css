@@ -21,3 +21,28 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
+.wrapper {
+  display: inline-flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.itemCard:nth-child(odd) {
+  background-color: tan;
+}
+/* note nth wont work with how our returns are set up... could find another way */
+.itemCard:nth-child(even) {
+  background-color: blue;
+}
+
+.itemCard {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-style: dotted;
+  min-width: 100px;
+  max-width: 200px;
+}

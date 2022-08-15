@@ -14,8 +14,9 @@ itemsRouter.get("/", async (req, res, next) => {
       },
     });
     res.send(items);
-  } catch (error) {}
-  next(error);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //const dropTables = async () => {
@@ -42,12 +43,13 @@ itemsRouter.get("/:id", async (req, res, next) => {
   try {
     const item = await prisma.items.findUnique({
       where: {
-        id: +req.params.id,
+        id: req.params.id,
       },
     });
     res.send(item);
-  } catch (error) {}
-  next(error);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = itemsRouter;
