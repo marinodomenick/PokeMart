@@ -1,5 +1,8 @@
 // This is the Web Server
 const express = require("express");
+require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const { authRequired } = require("./api/utils");
 const server = express();
 
 // enable cross-origin resource sharing to proxy api requests
@@ -10,6 +13,8 @@ server.use(cors());
 // create logs for everything
 const morgan = require("morgan");
 server.use(morgan("dev"));
+
+server.use(cookieParser(process.env.COOKIE_SECRET));
 
 // handle application/json requests
 server.use(express.json());

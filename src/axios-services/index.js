@@ -25,3 +25,57 @@ export async function getAPIHealth() {
     return { healthy: false };
   }
 }
+
+export async function getUserById(id) {
+  try {
+    const { data: user } = await axios.get(`/api/users/:${id}`);
+    return user;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function registerUser() {
+  try {
+    const { data } = await axios.post(`/api/auth/register`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function loginUser() {
+  try {
+    const { data } = await axios.post(`/api/auth/login`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function logoutUser() {
+  try {
+    const { data } = await axios.post(`/api/auth/logout`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function updateUser(id) {
+  try {
+    const { data } = await axios.patch(`/api/users/:${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getMe() {
+  try {
+    const { data } = await axios.get(`/api/users/me`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}

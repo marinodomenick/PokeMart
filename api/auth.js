@@ -1,3 +1,4 @@
+const { prisma } = require("@prisma/client");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authRouter = require("express").Router();
@@ -7,10 +8,14 @@ const SALT_ROUNDS = 10;
 
 authRouter.post("/register", async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    console.log(typeof password);
+    const { username, password, name, address } = req.body;
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-    const user = await User.createUser({ username, password: hashedPassword });
+    const user = await prisma.users.create({
+      username,
+      password: hashedPassword,
+      name,
+      address,
+    });
 
     delete user.password;
 
@@ -31,8 +36,11 @@ authRouter.post("/register", async (req, res, next) => {
 authRouter.post("/login", async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    console.log({ username, password });
-    const user = await User.getUserByUsername(username);
+    const user = await prisma.users.findUnique({
+      where: {
+        username: username,
+      },
+    });
     console.log(user);
     const validPassword = await bcrypt.compare(password, user.password);
 
