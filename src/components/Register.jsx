@@ -3,7 +3,7 @@ import { registerUser } from "../axios-services/index";
 import useAuth from "../hooks/useAuth";
 
 const Register = () => {
-  const { setToken, setUser } = useAuth();
+  const { setUser } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -17,18 +17,20 @@ const Register = () => {
         className="registerForm"
         onSubmit={async (e) => {
           e.preventDefault();
-          const registerResponse = await registerUser();
-          if (registerResponse.token) {
-            const token = registerResponse.token;
-            setToken(token);
-            setUser(registerResponse.user);
-            localStorage.setItem("token", token);
-            setPassword("");
-            setUsername("");
-            setName("");
-            setEmail("");
-            setAddress("");
-          }
+          const registerResponse = await registerUser(
+            username,
+            password,
+            name,
+            email,
+            address
+          );
+          setUser(registerResponse.user);
+          setPassword("");
+          setUsername("");
+          setName("");
+          setEmail("");
+          setAddress("");
+
           const errMsg = registerResponse.message;
           setErrorMessage(errMsg);
         }}

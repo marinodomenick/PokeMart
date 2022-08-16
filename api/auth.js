@@ -1,9 +1,10 @@
-const { prisma } = require("@prisma/client");
+const prisma = require("../db/prisma");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authRouter = require("express").Router();
 // const { User } = require("../db/models");
-const { JWT_SECRET, COOKIE_SECRET } = require("../env");
+const { JWT_SECRET, COOKIE_SECRET } = process.env;
+const { authRequired } = require("../api/utils");
 const SALT_ROUNDS = 10;
 
 authRouter.post("/register", async (req, res, next) => {
@@ -11,10 +12,12 @@ authRouter.post("/register", async (req, res, next) => {
     const { username, password, name, address } = req.body;
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     const user = await prisma.users.create({
-      username,
-      password: hashedPassword,
-      name,
-      address,
+      data: {
+        username,
+        password: hashedPassword,
+        name,
+        address,
+      },
     });
 
     delete user.password;
@@ -73,6 +76,13 @@ authRouter.post("/logout", async (req, res, next) => {
       loggedIn: false,
       message: "Logged Out",
     });
+  } catch (error) {
+    next(error);
+  }
+});
+authRouter.get("/me", authRequired, async (req, res, next) => {
+  try {
+    res.send(req.user);
   } catch (error) {
     next(error);
   }

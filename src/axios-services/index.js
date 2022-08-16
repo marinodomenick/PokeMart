@@ -28,26 +28,8 @@ export async function getAPIHealth() {
 
 export async function getUserById(id) {
   try {
-    const { data: user } = await axios.get(`/api/users/:${id}`);
+    const { data: user } = await axios.get(`/api/users/${id}`);
     return user;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-export async function registerUser() {
-  try {
-    const { data } = await axios.post(`/api/auth/register`);
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-export async function loginUser() {
-  try {
-    const { data } = await axios.post(`/api/auth/login`);
-    return data;
   } catch (err) {
     console.error(err);
   }
@@ -62,20 +44,62 @@ export async function logoutUser() {
   }
 }
 
-export async function updateUser(id) {
-  try {
-    const { data } = await axios.patch(`/api/users/:${id}`);
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
+export async function registerUser(username, password, name, email, address) {
+  const response = await fetch(`/api/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+      name: name,
+      address: address,
+    }),
+  });
+  const result = await response.json();
+  return result;
+}
+
+export async function loginUser(username, password) {
+  const response = await fetch(`/api/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  });
+  const result = await response.json();
+  return result;
+}
+
+export async function updateUser(id, username, password, name, address) {
+  const response = await fetch(`/api/users/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+      name: name,
+      address: address,
+    }),
+  });
+  const result = await response.json();
+  return result;
 }
 
 export async function getMe() {
-  try {
-    const { data } = await axios.get(`/api/users/me`);
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
+  const response = await fetch(`/api/auth/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const result = await response.json();
+  return result;
 }

@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 const prisma = require("../db/prisma");
 const { users } = require("../db/prisma");
-const { authRequired } = require("../api/utils");
 
 usersRouter.get("/", async (req, res, next) => {
   try {
@@ -28,26 +27,36 @@ usersRouter.get("/", async (req, res, next) => {
   }
 });
 
+// /api/users/:id
 usersRouter.get("/:id", async (req, res, next) => {
+  const id = req.params.id;
+  console.log("the id from the params is: ", id);
   try {
-    const user = await prisma.users.findUnique({
-      where: {
-        id: +req.params.id,
-      },
-      include: {
-        reviews: true,
-        orders: {
-          include: {
-            orderitems: {
-              include: {
-                items: true,
+    if (id) {
+      const user = await prisma.users.findUnique({
+        where: {
+          id: id,
+        },
+        include: {
+          reviews: true,
+          orders: {
+            include: {
+              orderitems: {
+                include: {
+                  items: true,
+                },
               },
             },
           },
         },
-      },
-    });
-    res.send(user);
+      });
+      res.send(user);
+    } else {
+      res.status(404).send({
+        name: "Not Found",
+        message: "Please log in or register",
+      });
+    }
   } catch (error) {
     next(error);
   }
@@ -62,14 +71,6 @@ usersRouter.patch("/:id", async (req, res, next) => {
       data: req.body,
     });
     res.send(updatedUser);
-  } catch (error) {
-    next(error);
-  }
-});
-
-usersRouter.get("/me", authRequired, async (req, res, next) => {
-  try {
-    res.send(req.user);
   } catch (error) {
     next(error);
   }
