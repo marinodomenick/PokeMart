@@ -46,3 +46,11 @@ body {
   min-width: 100px;
   max-width: 200px;
 }
+
+.itemCard:hover {
+  background-color: rgb(120, 179, 199);
+}
+
+button:hover {
+  background-color: rgb(120, 179, 199);
+}

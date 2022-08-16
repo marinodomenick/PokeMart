@@ -8,12 +8,11 @@ export default function ItemsProvider({ children }) {
   useEffect(() => {
     const getAllItems = async () => {
       const items = await fetchAllItems();
-      console.log(items, "ITEMS HERE");
+
       setItems(items);
     };
     getAllItems();
   }, []);
-  console.log("items provider has rendered", { items });
 
   return (
     <ItemsContext.Provider value={{ items, setItems }}>

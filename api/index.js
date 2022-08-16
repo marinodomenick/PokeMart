@@ -12,8 +12,6 @@ apiRouter.get("/health", (req, res, next) => {
   });
 });
 
-// place your routers here
-
 const itemsRouter = require("./items");
 apiRouter.use("/items", itemsRouter);
 
