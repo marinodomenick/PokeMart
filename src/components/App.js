@@ -5,6 +5,8 @@ import "../style/App.css";
 import Items from "./Items";
 import SingleItem from "./SingleItem";
 
+import { Login, Register } from "../components";
+import "../style/App.css";
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
 
@@ -24,8 +26,11 @@ const App = () => {
         <Routes>
           <Route path="/items" element={<Items />} />
           <Route path="/items/:id" element={<SingleItem />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         </Routes>
-      </div>
+
+    </div>
     </>
   );
 };
