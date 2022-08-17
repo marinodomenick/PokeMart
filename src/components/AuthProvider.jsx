@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../Context/AuthContext";
 import { getMe } from "../axios-services/index";
 
 export default function AuthProvider({ children }) {

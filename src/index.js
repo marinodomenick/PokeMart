@@ -7,13 +7,14 @@ import "./style/index.css";
 import AuthProvider from "./components/AuthProvider";
 
 ReactDOM.render(
-  <BrowserRouter>
-      <AuthProvider>
-    <ItemsProvider>
-      <App />
-    </ItemsProvider>
-    </AuthProvider>
-  </BrowserRouter>,
+  <AuthProvider>
+    <BrowserRouter>
+      <ItemsProvider>
+        <App />
+      </ItemsProvider>
+    </BrowserRouter>
+  </AuthProvider>,
+
   document.getElementById("root")
 );
 
