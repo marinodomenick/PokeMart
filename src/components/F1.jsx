@@ -24,7 +24,7 @@ export default function F1() {
               <div>
                 {item.name} <img id={item.id} src={item.imgUrl} />
               </div>
-              <div>{item.description}</div>
+
               <div>
                 Price: {item.price}₽ Stock: {item.stock}
               </div>

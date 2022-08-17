@@ -1,8 +1,8 @@
 /* import fonts here */
 
-* {
+body {
   box-sizing: border-box;
-  background-color: #ecb9fd;
+  background-color: #e299fb;
 }
 
 :root {
@@ -30,15 +30,8 @@ body {
   flex-wrap: wrap;
 }
 
-.itemCard:nth-child(odd) {
-  background-color: tan;
-}
-/* note nth wont work with how our returns are set up... could find another way */
-.itemCard:nth-child(even) {
-  background-color: rgb(250, 157, 141);
-}
-
 .itemCard {
+  background-color: rgb(221, 176, 117);
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -61,7 +54,7 @@ button:hover {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: rgb(173, 173, 173);
   border-style: solid;
 }
 
