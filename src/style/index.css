@@ -35,7 +35,7 @@ body {
 }
 /* note nth wont work with how our returns are set up... could find another way */
 .itemCard:nth-child(even) {
-  background-color: blue;
+  background-color: rgb(250, 157, 141);
 }
 
 .itemCard {
@@ -54,4 +54,25 @@ body {
 
 button:hover {
   background-color: rgb(120, 179, 199);
+}
+
+.vNavi {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  border-style: solid;
+}
+
+#Link {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+#Link:hover {
+  background-color: red;
+  color: white;
 }

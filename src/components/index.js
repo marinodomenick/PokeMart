@@ -7,3 +7,4 @@ export { default as F3 } from "./F3";
 export { default as F4 } from "./F4";
 export { default as F5 } from "./F5";
 export { default as F6 } from "./F6";
+export { default as VNavBar } from "./VNavBar";

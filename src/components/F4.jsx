@@ -1,9 +1,38 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { fetchItemsByFloor } from "../api/items";
 
-export class F4 extends Component {
-  render() {
-    return <div>F4 foiund jere</div>;
-  }
+export default function F4() {
+  const [floorItems, setFloorItems] = useState([]);
+  let { floorId } = useParams();
+  console.log(floorId, "AM I TRAPPED?"); //WAS EMPTY UNTILL SAVED?
+  useEffect(() => {
+    const getFloorItems = async () => {
+      const myFloorItems = await fetchItemsByFloor(4);
+      setFloorItems(myFloorItems);
+      console.log(floorItems, "MyFloorItems");
+    };
+    getFloorItems();
+  }, []);
+
+  return (
+    <>
+      {floorItems.map((item, index) => {
+        return (
+          <div className="wrapper">
+            <h4 key={`Key: ${index}`} className="itemCard">
+              <div>
+                {item.name} <img id={item.id} src={item.imgUrl} />
+              </div>
+              <div>{item.description}</div>
+              <div>
+                Price: {item.price}₽ Stock: {item.stock}
+              </div>
+              <a href={`/items/${item.id}`}>View Item</a>
+            </h4>
+          </div>
+        );
+      })}
+    </>
+  );
 }
-
-export default F4;
