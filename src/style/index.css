@@ -1,8 +1,8 @@
 /* import fonts here */
 
-* {
+body {
   box-sizing: border-box;
-  background-color: #ecb9fd;
+  background-color: #e299fb;
 }
 
 :root {
@@ -30,15 +30,8 @@ body {
   flex-wrap: wrap;
 }
 
-.itemCard:nth-child(odd) {
-  background-color: tan;
-}
-/* note nth wont work with how our returns are set up... could find another way */
-.itemCard:nth-child(even) {
-  background-color: blue;
-}
-
 .itemCard {
+  background-color: rgb(221, 176, 117);
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -54,4 +47,34 @@ body {
 
 button:hover {
   background-color: rgb(120, 179, 199);
+}
+
+.vNavi {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: rgb(173, 173, 173);
+  border-style: solid;
+}
+
+#Link {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+#Link:hover {
+  background-color: red;
+  color: white;
+  cursor: url(https://cur.cursors-4u.net/games/gam-7/gam625.cur), auto !important;
+}
+
+#Link:active {
+  cursor: url(https://cur.cursors-4u.net/games/gam-7/gam608.cur), auto !important;
+}
+
+* {
+  cursor: url(https://cur.cursors-4u.net/games/gam-6/gam558.cur), auto !important;
 }
