@@ -2,18 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./components";
 import { BrowserRouter } from "react-router-dom";
-// css stylesheets can be created for each component
-// place them in the src/style directory, and import them like this:
+import ItemsProvider from "./components/ItemsProvider";
 import "./style/index.css";
 import AuthProvider from "./components/AuthProvider";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
+  <AuthProvider>
+    <BrowserRouter>
+      <ItemsProvider>
         <App />
-      </BrowserRouter>
-    </AuthProvider>
-  </React.StrictMode>,
+      </ItemsProvider>
+    </BrowserRouter>
+  </AuthProvider>,
+
   document.getElementById("root")
 );
+
+// test comment

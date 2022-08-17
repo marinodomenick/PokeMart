@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../Hooks/useAuth";
 import { loginUser, logoutUser } from "../axios-services/index";
 
 export default function Login() {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { registerUser } from "../axios-services/index";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../Hooks/useAuth";
 
 const Register = () => {
   const { setUser } = useAuth();
