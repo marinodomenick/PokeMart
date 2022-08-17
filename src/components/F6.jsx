@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+
 import { fetchItemsByFloor } from "../api/items";
 
 export default function F5() {
   const [floorItems, setFloorItems] = useState([]);
-  let { floorId } = useParams();
-  console.log(floorId, "AM I TRAPPED?"); //WAS EMPTY UNTILL SAVED?
+
   useEffect(() => {
     const getFloorItems = async () => {
       const myFloorItems = await fetchItemsByFloor(5);
       setFloorItems(myFloorItems);
-      console.log(floorItems, "MyFloorItems");
     };
     getFloorItems();
   }, []);
