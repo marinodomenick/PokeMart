@@ -90,6 +90,7 @@ export async function updateUser(id, username, password, name, address) {
     }),
   });
   const result = await response.json();
+  console.log("result from updateUser", result)
   return result;
 }
 

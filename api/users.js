@@ -29,7 +29,7 @@ usersRouter.get("/", async (req, res, next) => {
 
 // /api/users/:id
 usersRouter.get("/:id", async (req, res, next) => {
-  const id = req.params.id;
+  const id = +req.params.id;
   console.log("the id from the params is: ", id);
   try {
     if (id) {
