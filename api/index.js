@@ -1,4 +1,4 @@
-const apiRouter = require('express').Router();
+const apiRouter = require("express").Router();
 
 apiRouter.get("/", (req, res, next) => {
   res.send({
@@ -13,9 +13,12 @@ apiRouter.get("/health", (req, res, next) => {
 });
 
 apiRouter.use("/users", require("./users.js"));
+const cartRouter = require("./cart.js");
 const itemsRouter = require("./items");
 apiRouter.use("/items", itemsRouter);
 
 apiRouter.use("/auth", require("./auth"));
+
+apiRouter.use("/cart", cartRouter);
 
 module.exports = apiRouter;

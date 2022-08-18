@@ -104,7 +104,7 @@ export async function getMe() {
   return result;
 }
 
-export async function getCart(userId, isFulfilled) {
+export async function getCart() {
   const response = await fetch(`/api/cart/${userId}`, {
     method: "GET",
     headers: {

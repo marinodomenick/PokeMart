@@ -1,16 +1,12 @@
 const cartRouter = require("express").Router();
+const { users } = require("../db/prisma");
 const prisma = require("../db/prisma");
 
-cartRouter.get("/:id", async (req, res, next) => {
+cartRouter.get("/", async (req, res, next) => {
   try {
-    const { userId } = req.body;
     const cart = await prisma.orders.findUnique({
-      //What table do I await? OrderItems? Make a Cart table first?
       where: {
-        userId: userId,
         isFulfilled: false,
-        //I think we would compare the logged in user and the cart's user/owner. If they match, the user will be able to view their cart.
-        //Probably wrong though
       },
     });
     res.send(cart);
@@ -30,3 +26,5 @@ cartRouter.get("/:id", async (req, res, next) => {
 
 //Guest user will show a login page on proceed to checkout forcing a login and account creation
 //Regular cart would most likely show a proceed to checkout and have dummy fields for payment options
+
+module.exports = cartRouter;
