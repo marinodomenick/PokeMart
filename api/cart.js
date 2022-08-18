@@ -1,5 +1,5 @@
 const cartRouter = require("express").Router();
-const { users } = require("../db/prisma");
+
 const prisma = require("../db/prisma");
 
 //------------------------------------ALL ITEMS ALL ORDERS-------------------
@@ -30,19 +30,6 @@ cartRouter.get("/orderitems/:orderId", async (req, res, next) => {
   }
 });
 
-// cartRouter.get("/orderitems/active/:orderId", async (req, res, next) => {
-//   try {
-//     const cart = await prisma.orderitems.findMany({
-//       where: {
-//         orderId: +req.params.orderId,
-//       },
-//     });
-//     res.send(cart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 //----------------------------------ALL ORDERS FOR USER-------------------------------------
 
 cartRouter.get("/orders/user/:userId", async (req, res, next) => {
@@ -59,7 +46,7 @@ cartRouter.get("/orders/user/:userId", async (req, res, next) => {
 });
 
 //-----------------------------------ACTIVE CART FOR USER----------------------------------------------
-//GET ITEMS FROM ACTIVE CART??? THIS ONE
+//GET ITEMS FROM ACTIVE CART
 cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
   try {
     const activeUserOrder = await prisma.orders.findMany({
@@ -82,6 +69,21 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
 });
 //WE NEED SOME WAY OF PREVENTING USERS FROM
 //HAVING TWO ACTIVE CARTS
+
+// cartRouter.post("/orders/active/user/:userId", async (req, res, next) => {
+//   try {
+//     const addToActiveCart = await prisma.orders.createMany({
+//       where: {
+//         isFulfilled: false,
+//         userId: +req.params.userId,
+//       },
+//       data: req.body,
+//     });
+//     res.send(addToActiveCart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // cartRouter.patch("/orders/:userId/active", async (req, res, next) => {
 //   try {
