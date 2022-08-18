@@ -33,14 +33,13 @@ itemsRouter.get("/:id", async (req, res, next) => {
 });
 
 itemsRouter.get("/floor/:floorId", async (req, res, next) => {
-  console.log(req.params[`floorId`]);
   try {
     const item = await prisma.items.findMany({
       where: {
         floorId: +req.params.floorId,
       },
     });
-    console.log(item, "from the new item router");
+
     res.send(item);
   } catch (error) {
     next(error);

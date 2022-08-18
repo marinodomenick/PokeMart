@@ -28,6 +28,9 @@ function VNavBar() {
       <Link id="Link" to="/items">
         All Items
       </Link>
+      <Link id="Link" to="/cart">
+        Cart
+      </Link>
     </nav>
   );
 }
