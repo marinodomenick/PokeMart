@@ -2,11 +2,26 @@ const cartRouter = require("express").Router();
 const { users } = require("../db/prisma");
 const prisma = require("../db/prisma");
 
-cartRouter.get("/", async (req, res, next) => {
+//THIS ROUTE GETS ALL ITEMS ON ALL ORDERS....?
+//--------------------------------------------
+// cartRouter.get("/", async (req, res, next) => {
+//   const orderId = req.params.orderId;
+//   console.log(orderId);
+//   try {
+//     const cart = await prisma.orderitems.findMany();
+//     res.send(cart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+//THIS ROUTE WILL GET ALL ITEMS ON AN ORDER
+//--------------------------------------------
+cartRouter.get("/:orderId", async (req, res, next) => {
   try {
-    const cart = await prisma.orders.findUnique({
+    const cart = await prisma.orderitems.findMany({
       where: {
-        isFulfilled: false,
+        orderId: +req.params.orderId,
       },
     });
     res.send(cart);
@@ -14,6 +29,42 @@ cartRouter.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+//GRAB ALL ORDERS FOR A USER (FULFILLED TRUE OR FALSE)
+cartRouter.get("/orders/:userId", async (req, res, next) => {
+  try {
+    const userOrders = await prisma.orders.findMany({
+      where: {
+        userId: +req.params.userId,
+      },
+    });
+    res.send(userOrders);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//GRAB ALL ORDERS FOR A USER WHERE FULFILLED = FALSE
+//I.E THIS IS THE ACTIVE CART
+
+cartRouter.get("/orders/:userId/active", async (req, res, next) => {
+  try {
+    const activeUserOrder = await prisma.orders.findMany({
+      where: {
+        isFulfilled: false,
+        userId: +req.params.userId,
+      },
+    });
+    res.send(activeUserOrder);
+  } catch (error) {
+    next(error);
+  }
+});
+//WE NEED SOME WAY OF PREVENTING USERS FROM
+//HAVING TWO ACTIVE CARTS
+
+//--------RANDOM NOTES SECTION BELOW--------
+//edit button will need to have a click event to target the Id so we know which item we are editing
 
 //We need a patch request (edit cart) and a post request (submit cart for checkout and maybe post to the user order page?) most likely. Maybe the post request just brings you to a confirmation page?
 //Or skip the post request in the cart and make the "Pay Now" button link to a fake success page.
