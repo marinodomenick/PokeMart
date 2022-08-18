@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { getMe, updateUser } from '../axios-services'
+import { updateUser } from '../axios-services'
 import useAuth from '../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const EditAccount = () => {
   const { user, setUser } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("")
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  console.log("the user is: ", user)
+  // console.log("the user is: ", user)
+  const navigate = useNavigate()
 
   return (
     <div className="updateUser">
@@ -23,16 +26,19 @@ const EditAccount = () => {
             username,
             password,
             name,
+            email,
             address
           );
           setUser(updateUserResponse);
           setPassword("");
           setUsername("");
           setName("");
+          setEmail("");
           setAddress("");
           //else statement?
           const errMsg = updateUserResponse.message;
           setErrorMessage(errMsg);
+          navigate("/myaccount");
         }}
       >
         <input
@@ -53,6 +59,12 @@ const EditAccount = () => {
           placeholder={user.name}
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          className="input"
+          placeholder={user.email}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="input"

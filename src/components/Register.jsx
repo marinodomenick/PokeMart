@@ -30,6 +30,8 @@ const Register = () => {
           if (registerResponse.user) {
             setErrorMessage("");
             setUser(registerResponse.user);
+            setAddress("");
+            setEmail("");
             setPassword("");
             setUsername("");
 

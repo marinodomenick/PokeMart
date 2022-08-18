@@ -28,6 +28,8 @@ const MyAccount = () => {
         <br/>
         {userData?.address}
         <br/>
+        {userData?.email}
+        <br/>
         {userData?.orders}
         <br/>
         {userData?.reviews}

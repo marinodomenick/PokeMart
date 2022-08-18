@@ -50,6 +50,7 @@ export async function registerUser(username, password, name, email, address) {
       username: username,
       password: password,
       name: name,
+      email: email,
       address: address,
     });
     return data
@@ -70,12 +71,13 @@ export async function loginUser(username, password) {
   }
 }
 
-export async function updateUser(id, username, password, name, address) {
+export async function updateUser(id, username, password, name, email, address) {
   try {
     const { data } = await axios.patch(`/api/users/${id}`, {
       username: username,
       password: password,
       name: name,
+      email: email,
       address: address,
     });
     return data

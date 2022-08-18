@@ -63,13 +63,13 @@ usersRouter.get("/:id", async (req, res, next) => {
 
 //this needs to be protected by authRequired
 usersRouter.patch("/:id", authRequired, async (req, res, next) => {
-  const { username, password, name, address } = req.body
+  const { username, password, name, email, address } = req.body
   try {
     const updatedUser = await prisma.users.update({
       where: {
         id: +req.params.id,
       },
-      data: { username, password, name, address },
+      data: { username, password, name, email, address },
     });
     res.send(updatedUser);
   } catch (error) {
