@@ -46,7 +46,7 @@ const App = () => {
           <Route path="items/floor/4" element={<F4 />} />
           <Route path="items/floor/5" element={<F5 />} />
           <Route path="items/floor/6" element={<F6 />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/:userId" element={<Cart />} />
         </Routes>
       </div>
     </>

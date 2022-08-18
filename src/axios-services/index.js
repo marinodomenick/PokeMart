@@ -103,14 +103,3 @@ export async function getMe() {
   const result = await response.json();
   return result;
 }
-
-export async function getCart() {
-  const response = await fetch(`/api/cart/${userId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const result = await response.json();
-  return result;
-}

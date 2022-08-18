@@ -17,7 +17,7 @@ const prisma = require("../db/prisma");
 // });
 
 //---------------------------------ITEMS ON ORDER------------------------------------
-cartRouter.get("/:orderId", async (req, res, next) => {
+cartRouter.get("/orderitems/:orderId", async (req, res, next) => {
   try {
     const cart = await prisma.orderitems.findMany({
       where: {
@@ -29,9 +29,23 @@ cartRouter.get("/:orderId", async (req, res, next) => {
     next(error);
   }
 });
+
+// cartRouter.get("/orderitems/active/:orderId", async (req, res, next) => {
+//   try {
+//     const cart = await prisma.orderitems.findMany({
+//       where: {
+//         orderId: +req.params.orderId,
+//       },
+//     });
+//     res.send(cart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 //----------------------------------ALL ORDERS FOR USER-------------------------------------
 
-cartRouter.get("/orders/:userId", async (req, res, next) => {
+cartRouter.get("/orders/user/:userId", async (req, res, next) => {
   try {
     const userOrders = await prisma.orders.findMany({
       where: {
@@ -45,13 +59,16 @@ cartRouter.get("/orders/:userId", async (req, res, next) => {
 });
 
 //-----------------------------------ACTIVE CART FOR USER----------------------------------------------
-
-cartRouter.get("/orders/:userId/active", async (req, res, next) => {
+//GET ITEMS FROM ACTIVE CART??? THIS ONE
+cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
   try {
     const activeUserOrder = await prisma.orders.findMany({
       where: {
         isFulfilled: false,
         userId: +req.params.userId,
+      },
+      include: {
+        orderitems: true,
       },
     });
     res.send(activeUserOrder);
@@ -84,6 +101,7 @@ cartRouter.get("/orders/:userId/active", async (req, res, next) => {
 //         isFulfilled: false,
 //         userId: +req.params.userId,
 //       },
+
 //     });
 //     res.send(updatedActiveCart);
 //   } catch (error) {
