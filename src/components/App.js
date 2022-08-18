@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
-import Items from "./Items";
-import SingleItem from "./SingleItem";
 
-import { Login, Logout, Register, MyAccount, EditAccount } from "../components";
+import { Login, Logout, Register, MyAccount, EditAccount, Items, SingleItem, Home, HNavBar } from "../components";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -21,6 +19,8 @@ const App = () => {
   return (
     <>
       <div>
+        <HNavBar/>
+        {/* <VNavBar /> */}
         <h1>Hello, World!</h1>
         <p>API Status: {APIHealth}</p>
         <Routes>
@@ -31,6 +31,8 @@ const App = () => {
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/editaccount" element={<EditAccount />} />
           <Route path="/logout" element={<Logout/>} />
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/items/floor/:id" element={<F1 />} /> */}
         </Routes>
       </div>
     </>

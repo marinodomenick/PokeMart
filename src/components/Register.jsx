@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../axios-services/index";
 import useAuth from "../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { setUser } = useAuth();
@@ -10,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate()
   return (
     <div className="register">
       {errorMessage ? <h4>{errorMessage}</h4> : null}
@@ -24,15 +26,17 @@ const Register = () => {
             email,
             address
           );
-          setUser(registerResponse.user);
-          setPassword("");
-          setUsername("");
-          setName("");
-          setEmail("");
-          setAddress("");
+          console.log("outcome of login response: ", registerResponse)
+          if (registerResponse.user) {
+            setErrorMessage("");
+            setUser(registerResponse.user);
+            setPassword("");
+            setUsername("");
 
-          const errMsg = registerResponse.message;
-          setErrorMessage(errMsg);
+            navigate("/home")
+          } else {
+            setErrorMessage("Error creating account. Passwords must be at least 8 characters long. You may need a different username/email.")
+          }
         }}
       >
         <input

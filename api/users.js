@@ -1,9 +1,8 @@
 const usersRouter = require("express").Router();
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+
 
 const prisma = require("../db/prisma");
-const { users } = require("../db/prisma");
+const { authRequired } = require("./utils");
 
 usersRouter.get("/", async (req, res, next) => {
   try {
@@ -30,7 +29,7 @@ usersRouter.get("/", async (req, res, next) => {
 // /api/users/:id
 usersRouter.get("/:id", async (req, res, next) => {
   const id = +req.params.id;
-  console.log("the id from the params is: ", id);
+  // console.log("the id from the params is: ", id);
   try {
     if (id) {
       const user = await prisma.users.findUnique({
@@ -62,13 +61,15 @@ usersRouter.get("/:id", async (req, res, next) => {
   }
 });
 
-usersRouter.patch("/:id", async (req, res, next) => {
+//this needs to be protected by authRequired
+usersRouter.patch("/:id", authRequired, async (req, res, next) => {
+  const { username, password, name, address } = req.body
   try {
     const updatedUser = await prisma.users.update({
       where: {
         id: +req.params.id,
       },
-      data: req.body,
+      data: { username, password, name, address },
     });
     res.send(updatedUser);
   } catch (error) {

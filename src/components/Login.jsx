@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import { loginUser } from "../axios-services/index";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { setUser } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate()
 
   return (
     <div className="login">
@@ -16,13 +18,17 @@ export default function Login() {
         onSubmit={async (e) => {
           e.preventDefault();
           const loginResponse = await loginUser(username, password);
-          setErrorMessage("");
-          setUser(loginResponse.user);
-          setPassword("");
-          setUsername("");
+          console.log("outcome of login response: ", loginResponse)
+          if (loginResponse.user) {
+            setErrorMessage("");
+            setUser(loginResponse.user);
+            setPassword("");
+            setUsername("");
 
-          const errMessage = loginResponse.message;
-          setErrorMessage(errMessage);
+            navigate("/home")
+          } else {
+            setErrorMessage("Incorrect username or password.")
+          }
         }}
       >
         <input

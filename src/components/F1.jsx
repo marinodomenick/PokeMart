@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 
-export class F1 extends Component {
-  render() {
-    return <div>FLOOR 1 HERE</div>;
-  }
-}
+// export class F1 extends Component {
+//   render() {
+//     return <div>FLOOR 1 HERE</div>;
+//   }
+// }
 
-export default F1;
+// export default F1;

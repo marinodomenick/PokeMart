@@ -45,62 +45,50 @@ export async function logoutUser() {
 }
 
 export async function registerUser(username, password, name, email, address) {
-  const response = await fetch(`/api/auth/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  try {
+    const { data } = await axios.post("/api/auth/register", {
       username: username,
       password: password,
       name: name,
       address: address,
-    }),
-  });
-  const result = await response.json();
-  return result;
+    });
+    return data
+  } catch(err) {
+    console.error(err)
+  }
 }
 
 export async function loginUser(username, password) {
-  const response = await fetch(`/api/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  try {
+    const { data } = await axios.post("/api/auth/login", {
       username: username,
-      password: password,
-    }),
-  });
-  const result = await response.json();
-  return result;
+      password: password
+    });
+    return data
+  } catch(err) {
+    console.error(err)
+  }
 }
 
 export async function updateUser(id, username, password, name, address) {
-  const response = await fetch(`/api/users/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  try {
+    const { data } = await axios.patch(`/api/users/${id}`, {
       username: username,
       password: password,
       name: name,
       address: address,
-    }),
-  });
-  const result = await response.json();
-  console.log("result from updateUser", result)
-  return result;
+    });
+    return data
+  } catch(err) {
+    console.error(err)
+  }
 }
 
 export async function getMe() {
-  const response = await fetch(`/api/auth/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const result = await response.json();
-  return result;
+  try {
+    const { data } = await axios.get("/api/auth/me");
+    return data
+  } catch(err) {
+    console.error(err)
+  }
 }
