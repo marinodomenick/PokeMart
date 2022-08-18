@@ -2,8 +2,9 @@ const cartRouter = require("express").Router();
 const { users } = require("../db/prisma");
 const prisma = require("../db/prisma");
 
-//THIS ROUTE GETS ALL ITEMS ON ALL ORDERS....?
-//--------------------------------------------
+//------------------------------------ALL ITEMS ALL ORDERS-------------------
+//MAYBE COULD BE USED TO CALCULATE ALL USERS CARTS VS STOCK BUT PROB USELESS
+//
 // cartRouter.get("/", async (req, res, next) => {
 //   const orderId = req.params.orderId;
 //   console.log(orderId);
@@ -15,8 +16,7 @@ const prisma = require("../db/prisma");
 //   }
 // });
 
-//THIS ROUTE WILL GET ALL ITEMS ON AN ORDER
-//--------------------------------------------
+//---------------------------------ITEMS ON ORDER------------------------------------
 cartRouter.get("/:orderId", async (req, res, next) => {
   try {
     const cart = await prisma.orderitems.findMany({
@@ -29,8 +29,8 @@ cartRouter.get("/:orderId", async (req, res, next) => {
     next(error);
   }
 });
+//----------------------------------ALL ORDERS FOR USER-------------------------------------
 
-//GRAB ALL ORDERS FOR A USER (FULFILLED TRUE OR FALSE)
 cartRouter.get("/orders/:userId", async (req, res, next) => {
   try {
     const userOrders = await prisma.orders.findMany({
@@ -44,8 +44,7 @@ cartRouter.get("/orders/:userId", async (req, res, next) => {
   }
 });
 
-//GRAB ALL ORDERS FOR A USER WHERE FULFILLED = FALSE
-//I.E THIS IS THE ACTIVE CART
+//-----------------------------------ACTIVE CART FOR USER----------------------------------------------
 
 cartRouter.get("/orders/:userId/active", async (req, res, next) => {
   try {
@@ -62,6 +61,35 @@ cartRouter.get("/orders/:userId/active", async (req, res, next) => {
 });
 //WE NEED SOME WAY OF PREVENTING USERS FROM
 //HAVING TWO ACTIVE CARTS
+
+// cartRouter.patch("/orders/:userId/active", async (req, res, next) => {
+//   try {
+//     const updatedActiveCart = await prisma.orders.update({
+//       where: {
+//         isFulfilled: false,
+//         userId: +req.params.userId,
+//       },
+//       data: req.body,
+//     });
+//     res.send(updatedActiveCart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// cartRouter.delete("/orders/:userId/active", async (req, res, next) => {
+//   try {
+//     const updatedActiveCart = await prisma.orders.delete({
+//       where: {
+//         isFulfilled: false,
+//         userId: +req.params.userId,
+//       },
+//     });
+//     res.send(updatedActiveCart);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 //--------RANDOM NOTES SECTION BELOW--------
 //edit button will need to have a click event to target the Id so we know which item we are editing
