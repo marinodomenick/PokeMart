@@ -48,6 +48,7 @@ authRouter.post("/login", async (req, res, next) => {
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (validPassword) {
+      delete user.password;
       const token = jwt.sign(user, JWT_SECRET);
 
       res.cookie("token", token, {
@@ -56,7 +57,6 @@ authRouter.post("/login", async (req, res, next) => {
         signed: true,
       });
 
-      delete user.password;
 
       res.send({ user });
     }

@@ -5,7 +5,7 @@ import "../style/App.css";
 import Items from "./Items";
 import SingleItem from "./SingleItem";
 
-import { Login, Register, MyAccount, EditAccount } from "../components";
+import { Login, Logout, Register, MyAccount, EditAccount } from "../components";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -30,6 +30,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/editaccount" element={<EditAccount />} />
+          <Route path="/logout" element={<Logout/>} />
         </Routes>
       </div>
     </>

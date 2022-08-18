@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../Hooks/useAuth";
-import { loginUser, logoutUser } from "../axios-services/index";
+import { loginUser } from "../axios-services/index";
 
 export default function Login() {
   const { setUser } = useAuth();
@@ -11,18 +11,6 @@ export default function Login() {
   return (
     <div className="login">
       {errorMessage ? <h4>{errorMessage}</h4> : null}
-      <button
-        className="logoutButton"
-        onClick={(e) => {
-          e.preventDefault();
-          const response = logoutUser();
-          setUser({});
-          setErrorMessage("");
-        }}
-      >
-        Logout
-      </button>
-
       <form
         className="loginForm"
         onSubmit={async (e) => {
