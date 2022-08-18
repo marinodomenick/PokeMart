@@ -68,7 +68,11 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
         userId: +req.params.userId,
       },
       include: {
-        orderitems: true,
+        orderitems: {
+          include: {
+            items: true,
+          },
+        },
       },
     });
     res.send(activeUserOrder);

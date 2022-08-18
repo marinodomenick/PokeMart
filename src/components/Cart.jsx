@@ -29,8 +29,7 @@ import useCart from "../Hooks/useCart";
 //           );
 //         })}
 //       </div>
-//     </>
-//   );
+//     </>//   );
 // }
 
 export default function Cart() {
@@ -45,15 +44,20 @@ export default function Cart() {
             <div className="wrapper">
               <h4 key={`Key: ${index}`} className="itemCard">
                 <div>
-                  Your UserId:{item.userId}{" "}
+                  Your UserId:{item.userId}
                   <img id={item.id} src={item.imgUrl} />
                 </div>
                 <div>Total: {item.totalPrice}₽</div>
+                <div>Shpping Info: {cartItems[0].shippingAddress}</div>
+                <div>PokeCart:</div>
                 {item.orderitems.map((orderitem, index) => {
                   return (
                     <>
                       <p>
-                        Item:{orderitem.itemId} Quantity:{orderitem.quantity}
+                        Item: {orderitem.items.name}
+                        <img src={orderitem.items.imgUrl} /> Quantity:
+                        {orderitem.quantity}
+                        <div>Unit price: {orderitem.items.price}</div>
                       </p>
                     </>
                   );
