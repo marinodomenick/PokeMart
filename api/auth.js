@@ -9,13 +9,14 @@ const SALT_ROUNDS = 10;
 
 authRouter.post("/register", async (req, res, next) => {
   try {
-    const { username, password, name, address } = req.body;
+    const { username, password, name, email, address } = req.body;
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     const user = await prisma.users.create({
       data: {
         username,
         password: hashedPassword,
         name,
+        email,
         address,
       },
     });
@@ -48,6 +49,7 @@ authRouter.post("/login", async (req, res, next) => {
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (validPassword) {
+      delete user.password;
       const token = jwt.sign(user, JWT_SECRET);
 
       res.cookie("token", token, {
@@ -56,7 +58,6 @@ authRouter.post("/login", async (req, res, next) => {
         signed: true,
       });
 
-      delete user.password;
 
       res.send({ user });
     }

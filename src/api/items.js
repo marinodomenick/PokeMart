@@ -1,25 +1,21 @@
+import axios from "axios";
+
 export const fetchAllItems = async () => {
-  const response = await fetch("/api/items", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const result = await response.json();
-
-  return result;
+  try {
+    const { data } = await axios.get("/api/items");
+    return data
+  } catch(err) {
+    console.error(err)
+  }
 };
 
 export const fetchSingleItem = async (id) => {
-  const response = await fetch(`/api/items/${id}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const result = await response.json();
-
-  return result;
+  try {
+    const { data } = await axios.get(`/api/items/${id}`);
+    return data
+  } catch(err) {
+    console.error(err)
+  }
 };
 
 export const fetchItemsByFloor = async (floorId) => {

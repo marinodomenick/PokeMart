@@ -2,21 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
-import Items from "./Items";
-import SingleItem from "./SingleItem";
 
-import {
-  Login,
-  Register,
-  F1,
-  F2,
-  F3,
-  F4,
-  F5,
-  F6,
-  VNavBar,
-} from "../components";
-import "../style/App.css";
+import { Login, Logout, Register, MyAccount, EditAccount, Items, SingleItem, Home, HNavBar, VNavBar, F1 } from "../components";
+
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
 
@@ -31,6 +19,7 @@ const App = () => {
   return (
     <>
       <div>
+        <HNavBar/>
         <VNavBar />
         <h1>Hello, World!</h1>
         <p>API Status: {APIHealth}</p>
@@ -39,12 +28,11 @@ const App = () => {
           <Route path="/items/:id" element={<SingleItem />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="items/floor/1" element={<F1 />} />
-          <Route path="items/floor/2" element={<F2 />} />
-          <Route path="items/floor/3" element={<F3 />} />
-          <Route path="items/floor/4" element={<F4 />} />
-          <Route path="items/floor/5" element={<F5 />} />
-          <Route path="items/floor/6" element={<F6 />} />
+          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/editaccount" element={<EditAccount />} />
+          <Route path="/logout" element={<Logout/>} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/items/floor/:id" element={<F1 />} />
         </Routes>
       </div>
     </>
