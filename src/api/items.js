@@ -17,3 +17,15 @@ export const fetchSingleItem = async (id) => {
     console.error(err)
   }
 };
+
+export const fetchItemsByFloor = async (floorId) => {
+  const response = await fetch(`/api/items/floor/${floorId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const result = await response.json();
+
+  return result;
+};

@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 
-import { Login, Logout, Register, MyAccount, EditAccount, Items, SingleItem, Home, HNavBar } from "../components";
+import { Login, Logout, Register, MyAccount, EditAccount, Items, SingleItem, Home, HNavBar, VNavBar, F1 } from "../components";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
@@ -20,7 +20,7 @@ const App = () => {
     <>
       <div>
         <HNavBar/>
-        {/* <VNavBar /> */}
+        <VNavBar />
         <h1>Hello, World!</h1>
         <p>API Status: {APIHealth}</p>
         <Routes>
@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/editaccount" element={<EditAccount />} />
           <Route path="/logout" element={<Logout/>} />
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/items/floor/:id" element={<F1 />} /> */}
+          <Route path="/items/floor/:id" element={<F1 />} />
         </Routes>
       </div>
     </>
