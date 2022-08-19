@@ -8,7 +8,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="login">
@@ -18,16 +18,16 @@ export default function Login() {
         onSubmit={async (e) => {
           e.preventDefault();
           const loginResponse = await loginUser(username, password);
-          console.log("outcome of login response: ",)
-          if (loginResponse.user) {
+          console.log("outcome of login response: ");
+          if (loginResponse) {
             setErrorMessage("");
-            setUser(loginResponse.user);
+            setUser(loginResponse);
             setPassword("");
             setUsername("");
 
-            navigate("/home")
+            navigate("/home");
           } else {
-            setErrorMessage("Incorrect username or password.")
+            setErrorMessage("Incorrect username or password.");
           }
         }}
       >
