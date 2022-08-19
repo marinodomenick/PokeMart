@@ -1,49 +1,49 @@
-import React, { useState } from "react";
-import { registerUser } from "../axios-services/index";
-import useAuth from "../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { updateUser } from '../axios-services'
+import useAuth from '../Hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
-  const { setUser } = useAuth();
+const EditAccount = () => {
+  const { user, setUser } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("")
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  // console.log("the user is: ", user)
   const navigate = useNavigate()
+
   return (
-    <div className="register">
+    <div className="updateUser">
       {errorMessage ? <h4>{errorMessage}</h4> : null}
       <form
-        className="registerForm"
+        className="updateUserForm"
         onSubmit={async (e) => {
           e.preventDefault();
-          const registerResponse = await registerUser(
+          const updateUserResponse = await updateUser(
+            user.id,
             username,
             password,
             name,
             email,
             address
           );
-          console.log("outcome of login response: ", registerResponse)
-          if (registerResponse.user) {
-            setErrorMessage("");
-            setUser(registerResponse.user);
-            setAddress("");
-            setEmail("");
-            setPassword("");
-            setUsername("");
-
-            navigate("/home")
-          } else {
-            setErrorMessage("Error creating account. Passwords must be at least 8 characters long. You may need a different username/email.")
-          }
+          setUser(updateUserResponse);
+          setPassword("");
+          setUsername("");
+          setName("");
+          setEmail("");
+          setAddress("");
+          //else statement?
+          const errMsg = updateUserResponse.message;
+          setErrorMessage(errMsg);
+          navigate("/myaccount");
         }}
       >
         <input
           className="input"
-          placeholder="username"
+          placeholder={user.username}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -51,33 +51,33 @@ const Register = () => {
           className="input"
           placeholder="password"
           value={password}
-          type="password"
+          //type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
           className="input"
-          placeholder="name"
+          placeholder={user.name}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           className="input"
-          placeholder="email"
+          placeholder={user.email}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="input"
-          placeholder="address"
+          placeholder={user.address}
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        <button type="submit" className="registerButton">
-          Register
+        <button type="submit" className="updateButton">
+          Update Account
         </button>
       </form>
     </div>
   );
-};
+}
 
-export default Register;
+export default EditAccount

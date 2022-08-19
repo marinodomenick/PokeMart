@@ -3,6 +3,7 @@ const userData = [
     username: "TheRealOak",
     password: "catchThemAll",
     name: "Samuel Oak",
+    email: "Oaktree@pokemail.com",
     address: "3 Pallet Town",
     isAdmin: true,
   },

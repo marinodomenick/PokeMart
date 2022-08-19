@@ -8,8 +8,10 @@ const useAuth = () => {
     user,
     setUser,
     token,
-    setToken,
+    setToken
   };
 };
+
+//remove token?
 
 export default useAuth;
