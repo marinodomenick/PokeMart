@@ -8,6 +8,7 @@ import { getMe } from "../axios-services";
 export default function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useAuth();
+  console.log(user);
   // let id = user.id;
   // console.log(id, "needs to work id ");
   // const { id } = useParams();
@@ -16,16 +17,13 @@ export default function CartProvider({ children }) {
   //PASSING PASSWORD NEAR FRONT END? SEEMS SKETCHY...?WETFGIJSDNGFLKJsGS JUST WORK
   useEffect(() => {
     const getAllCartItems = async () => {
-      //const user = await getMe();
-      console.log(user, "user stuff");
-      console.log(user.id, "the id we are passing in");
       const cartItems = await fetchAllCartItems(user.id);
-      console.log(cartItems, "from the cart provider");
+      //console.log(cartItems, "from the cart provider");
       setCartItems(cartItems);
     };
     getAllCartItems();
   }, []);
-
+  console.log(cartItems, "want this");
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>
       {children}

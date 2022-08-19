@@ -2,34 +2,6 @@ const cartRouter = require("express").Router();
 
 const prisma = require("../db/prisma");
 
-//------------------------------------ALL ITEMS ALL ORDERS-------------------
-//MAYBE COULD BE USED TO CALCULATE ALL USERS CARTS VS STOCK BUT PROB USELESS
-//
-// cartRouter.get("/", async (req, res, next) => {
-//   const orderId = req.params.orderId;
-//   console.log(orderId);
-//   try {
-//     const cart = await prisma.orderitems.findMany();
-//     res.send(cart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-//---------------------------------ITEMS ON ORDER------------------------------------
-cartRouter.get("/orderitems/:orderId", async (req, res, next) => {
-  try {
-    const cart = await prisma.orderitems.findMany({
-      where: {
-        orderId: +req.params.orderId,
-      },
-    });
-    res.send(cart);
-  } catch (error) {
-    next(error);
-  }
-});
-
 //----------------------------------ALL ORDERS FOR USER-------------------------------------
 
 cartRouter.get("/orders/user/:userId", async (req, res, next) => {
@@ -67,6 +39,9 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
     next(error);
   }
 });
+
+// Checkout out a cart, set isfullilled === true
+
 //WE NEED SOME WAY OF PREVENTING USERS FROM
 //HAVING TWO ACTIVE CARTS
 
@@ -77,7 +52,6 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
 //         isFulfilled: false,
 //         userId: +req.params.userId,
 //       },
-//       data: req.body,
 //     });
 //     res.send(addToActiveCart);
 //   } catch (error) {
