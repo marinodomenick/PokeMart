@@ -10,6 +10,7 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  // fix this????? loginResponse vs loginResponse.user
   return (
     <div className="login">
       {errorMessage ? <h4>{errorMessage}</h4> : null}
