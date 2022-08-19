@@ -3,10 +3,25 @@ import { Route, Routes } from "react-router-dom";
 import { getAPIHealth } from "../axios-services";
 import "../style/App.css";
 
-import { Login, Logout, Register, MyAccount, EditAccount, Items, SingleItem, Home, HNavBar, VNavBar, F1 } from "../components";
+import {
+  Login,
+  Logout,
+  Register,
+  MyAccount,
+  EditAccount,
+  Items,
+  SingleItem,
+  Home,
+  HNavBar,
+  VNavBar,
+  F1,
+  AllUsers,
+} from "../components";
+import useAuth from "../Hooks/useAuth";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  const { user } = useAuth();
 
   useEffect(() => {
     const getAPIStatus = async () => {
@@ -19,7 +34,7 @@ const App = () => {
   return (
     <>
       <div>
-        <HNavBar/>
+        <HNavBar />
         <VNavBar />
         <h1>Hello, World!</h1>
         <p>API Status: {APIHealth}</p>
@@ -30,9 +45,12 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/editaccount" element={<EditAccount />} />
-          <Route path="/logout" element={<Logout/>} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/home" element={<Home />} />
           <Route path="/items/floor/:id" element={<F1 />} />
+          {user.isAdmin ? (
+            <Route path="/allusers" element={<AllUsers />} />
+          ) : null}
         </Routes>
       </div>
     </>
