@@ -40,6 +40,49 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
   }
 });
 
+cartRouter.get("/:orderId", async (req, res, next) => {
+  try {
+    const cart = await prisma.orderitems.findMany({
+      where: {
+        orderId: +req.params.orderId,
+      },
+    });
+    res.send(cart);
+  } catch (error) {
+    next(error);
+  }
+});
+
+cartRouter.delete("/:id", async (req, res, next) => {
+  try {
+    const deleteitem = await prisma.orderitems.delete({
+      where: {
+        id: +req.params.id,
+      },
+    });
+    res.send(deleteitem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+cartRouter.patch("/:id", async (req, res, next) => {
+  const { quantity } = req.body;
+  try {
+    const updateitem = await prisma.orderitems.update({
+      where: {
+        id: +req.params.id,
+      },
+      data: {
+        quantity: quantity,
+      },
+    });
+    res.send(updateitem);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // Checkout out a cart, set isfullilled === true
 
 //WE NEED SOME WAY OF PREVENTING USERS FROM

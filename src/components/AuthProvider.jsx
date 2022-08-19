@@ -8,6 +8,7 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     async function getUser() {
       const me = await getMe();
+      console.log(me);
       if (me.id) {
         setUser(me);
       } else {
