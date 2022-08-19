@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import useAuth from "../Hooks/useAuth";
+//import useAuth from "../Hooks/useAuth";
 import { fetchAllCartItems } from "../api/cart";
 import CartContext from "../Context/CartContext";
 // import { useParams } from "react-router-dom";
@@ -16,6 +16,7 @@ export default function CartProvider({ children }) {
   //PASSING PASSWORD NEAR FRONT END? SEEMS SKETCHY...?WETFGIJSDNGFLKJsGS JUST WORK
   useEffect(() => {
     const getAllCartItems = async () => {
+      //const { user } = useAuth();
       const user = await getMe();
       console.log(user, "user stuff");
       console.log(user.id, "the id we are passing in");
