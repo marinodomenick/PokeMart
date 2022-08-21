@@ -6,6 +6,7 @@ import ItemsProvider from "./components/ItemsProvider";
 import "./style/index.css";
 import AuthProvider from "./components/AuthProvider";
 import UsersProvider from "./components/UsersProvider";
+import SingleItemProvider from "./components/SingleItemProvider";
 
 ReactDOM.render(
   <AuthProvider>

@@ -61,13 +61,13 @@ itemsRouter.delete("/:id", async (req, res, next) => {
 });
 
 itemsRouter.patch("/:id", async (req, res, next) => {
-  const { name, type, description, price, stock, floorId, imgUrl } = req.body;
+  const { name, type, description, price, stock, floorId } = req.body;
   try {
-    const patchItem = await prisma.item.patch({
+    const patchItem = await prisma.item.update({
       where: {
         id: +req.params.id,
       },
-      data: { name, type, description, price, stock, floorId, imgUrl },
+      data: { name, type, description, price, stock, floorId },
     });
     res.send(patchItem);
   } catch (error) {

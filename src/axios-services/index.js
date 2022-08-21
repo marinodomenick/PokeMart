@@ -111,8 +111,7 @@ export async function editItem(
   description,
   price,
   stock,
-  floorId,
-  imgUrl
+  floorId
 ) {
   try {
     const { data } = await axios.patch(`/api/items/${id}`, {
@@ -122,7 +121,6 @@ export async function editItem(
       price,
       stock,
       floorId,
-      imgUrl,
     });
     return data;
   } catch (err) {
@@ -140,7 +138,7 @@ export async function createItem(
   imgUrl
 ) {
   try {
-    const { data } = await axios.create(`/api/items/`, {
+    const { data } = axios.create(`/api/items/`, {
       name,
       type,
       description,

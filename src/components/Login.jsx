@@ -20,6 +20,7 @@ export default function Login() {
           e.preventDefault();
           const loginResponse = await loginUser(username, password);
           console.log("outcome of login response: ", loginResponse);
+          console.log("loginResponse.user is: ", loginResponse.user);
           if (loginResponse.user) {
             setErrorMessage("");
             setUser(loginResponse.user);

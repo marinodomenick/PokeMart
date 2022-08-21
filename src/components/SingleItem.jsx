@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSingleItem } from "../api/items";
-import { Link } from "react-router-dom";
+import { destroyItem } from "../axios-services";
+import useAuth from "../Hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
 
 //note this page is off api/itemS/#
+
+// delete button works, but you do have to refresh in order for the site to register that it's gone
 export default function SingleItem() {
+  const { user } = useAuth();
   const [singleItem, setSingleItem] = useState({});
   let { id } = useParams();
+  const navigate = useNavigate();
   console.log(id, "we know this works");
   useEffect(() => {
     const getSingleItem = async () => {
@@ -20,6 +26,17 @@ export default function SingleItem() {
     <>
       <div className="itemCard">
         <div>Single Item Page</div>
+        {user.isAdmin ? <Link to="/edititem/:id">Edit Item</Link> : null}
+        {user.isAdmin ? (
+          <button
+            onClick={() => {
+              destroyItem(id);
+              navigate("/home");
+            }}
+          >
+            Delete Item
+          </button>
+        ) : null}
         <h2>{singleItem.name}</h2>
         <h4>
           Price:{singleItem.price} Stock:{singleItem.stock}
