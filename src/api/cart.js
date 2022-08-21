@@ -1,4 +1,7 @@
 //I BELIEVE THIS IS GOING TO NEED TO FETCH ALL THE ITEMS(ORDERITEMS) IN THE USERS ACTIVE CART(ORDER)
+
+// import { orderitems } from "../../db/prisma";
+
 //do we need to add the useAuth to the function head to only allow currentuser to run this?
 export const fetchAllCartItems = async (userId) => {
   console.log(userId, "just to confirm its here");
@@ -10,6 +13,19 @@ export const fetchAllCartItems = async (userId) => {
 
   const result = await response.json();
   console.log(result, "from fetchallcartitems API");
+  return result;
+};
+
+export const deleteCartItem = async (orderId) => {
+  console.log(orderId, "Inside cart.js");
+  // let orderid = orderitems.id;
+  const response = await fetch(`/api/cart/${orderId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const result = await response.json();
   return result;
 };
 

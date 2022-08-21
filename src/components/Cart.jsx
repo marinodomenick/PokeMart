@@ -1,5 +1,6 @@
 import React from "react";
 import useCart from "../Hooks/useCart";
+import { deleteCartItem } from "../api/cart";
 
 export default function Cart() {
   const { cartItems } = useCart();
@@ -33,7 +34,15 @@ export default function Cart() {
                   );
                 })}
                 <span>
-                  <button>Edit</button> <button>Delete</button>
+                  <button>Edit</button>{" "}
+                  <button
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      const result = await deleteCartItem();
+                    }}
+                  >
+                    Delete
+                  </button>
                 </span>
               </h4>
             </div>
