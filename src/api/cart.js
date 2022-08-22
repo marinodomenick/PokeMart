@@ -27,9 +27,10 @@ export const deleteCartItem = async (id) => {
 };
 
 //------------add item to user cart  ----
-export const addCartItem = async (itemId, orderId, quantity) => {
+export const addCartItem = async (itemId, orderId, inquantity) => {
+  let quantity = +inquantity;
   console.log(itemId, orderId, quantity);
-  const response = await fetch(`/api/cart/item/${orderId}`, {
+  const response = await fetch(`/api/cart/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,11 +46,12 @@ export const addCartItem = async (itemId, orderId, quantity) => {
   return result;
 };
 //---------edit quantity in user cart
-export const editCartQuantity = async (id, quantity) => {
+export const editCartQuantity = async (id, inquantity) => {
   console.log(id, "THE ORDERID WE EDIT");
+  let quantity = +inquantity;
   console.log(quantity, "works aswell");
   //CONSOLE.LOG ABOVE FIRES
-  const response = await fetch(`/api/cart/${id}`, {
+  const response = await fetch(`/api/cart/item/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
