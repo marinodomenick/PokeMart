@@ -59,17 +59,26 @@ export default function Cart() {
                   );
                 })}
                 <span>
-                  {/* THIS IS DELETE WHOLE CART BUTTON */}
                   <button
                     onClick={async (event) => {
                       event.preventDefault();
-                      console.log(cartItems[0].id, "TRICK TO GRAB CART ID");
                       await deleteCart(cartItems[0].id);
                     }}
                   >
                     Clear Cart
                   </button>
-                  {/* THIS BUTTON NEEDS TO ALSO RUN A FUNCTION TO CREATE NEW CART */}
+                  <button
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      console.log("purchase button");
+                      //needs to set current cart
+                      //isFulfilled = true
+                      //create new cart isfulfilled=False
+                      //link to page saying purchase successful
+                    }}
+                  >
+                    Purchase
+                  </button>
                 </span>
               </h4>
             </div>
