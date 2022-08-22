@@ -9,13 +9,10 @@ export default function Items() {
   const { cartItems } = useCart();
   const { items } = useItems();
   const [quantity, setQuantity] = useState("");
-  console.log(cartItems, "does cart make it to items?");
-  console.log(items, "data to play with on this page");
   const itemsToDisplay = items.map((item, i) => {
     return (
       <div className="wrapper">
         <div className="itemCard" key={`Key ${i}`} id={item.id}>
-          {/* CURRENTLY FOR FETCHSINGLEITEM(E.TARGET.ID) TO WORK EACH CHILD NEEDS THIS ID */}
           <h4 id={item.id}>{item.id}</h4>
           <span>
             <img id={item.id} src={item.imgUrl} />
@@ -30,11 +27,6 @@ export default function Items() {
             <form
               onSubmit={async (event) => {
                 event.preventDefault();
-                console.log(item.id, "the target");
-
-                console.log(cartItems[0].id, "use this??");
-                //i think we can use cartitems[0] as a user will always
-                //have one cart that isFulfilled=false
                 await addCartItem(item.id, cartItems[0].id, quantity);
                 console.log("past the block");
               }}

@@ -39,26 +39,7 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
     next(error);
   }
 });
-//ADD ITEM TO ACTIVE CART...??? --
-// cartRouter.post("/orders/active/user/:orderId", async (req, res, next) => {
-//   try {
-//     //maybe worth including orderitems and maping over active order..?
-//     const itemAddedToCart = await prisma.orderitems.create({
-//       // where: {
-//       //   orderId: req.params.orderId,
-//       // },
-//       data: {
-//         itemId: req.params.itemId,
-//         orderId: req.params.orderId,
-//         quantity: req.params.quantity,
-//       },
-//     });
-//     console.log(itemAddedToCart, "from cartRouter");
-//     res.send(itemAddedToCart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+
 //-------GET----DELETE----PATCH---ALL CART ITEMS---------
 //GET ALL ITEMS IN CART
 cartRouter.get("/:orderId", async (req, res, next) => {
@@ -146,7 +127,7 @@ cartRouter.get("/:orderId", async (req, res, next) => {
     next(error);
   }
 });
-//CREATE NEW ITEM FOR CART..?
+//CREATE NEW ITEM FOR CART
 cartRouter.post("/", async (req, res, next) => {
   const { itemId, orderId, quantity } = req.body;
   try {
@@ -162,28 +143,6 @@ cartRouter.post("/", async (req, res, next) => {
     next(error);
   }
 });
-
-//COPIED THIS BAD IDEA FROM ABOVE
-//USING TO HELP W ABOVE
-// cartRouter.post("/orders/active/user/:orderId", async (req, res, next) => {
-//   try {
-//     //maybe worth including orderitems and maping over active order..?
-//     const itemAddedToCart = await prisma.orderitems.create({
-//       // where: {
-//       //   orderId: req.params.orderId,
-//       // },
-//       data: {
-//         itemId: req.params.itemId,
-//         orderId: req.params.orderId,
-//         quantity: req.params.quantity,
-//       },
-//     });
-//     console.log(itemAddedToCart, "from cartRouter");
-//     res.send(itemAddedToCart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 //--------RANDOM NOTES SECTION BELOW--------
 //edit button will need to have a click event to target the Id so we know which item we are editing

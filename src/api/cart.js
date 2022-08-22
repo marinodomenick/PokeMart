@@ -8,12 +8,11 @@ export const fetchAllCartItems = async (userId) => {
   });
 
   const result = await response.json();
-  console.log(result, "from fetchallcartitems API");
+  console.log(result, "FETCH ALL CART ITEMS");
   return result;
 };
 //----------delete item in user cart
 export const deleteCartItem = async (id) => {
-  console.log(id, "Inside cart.js delete function..the orderId");
   const response = await fetch(`/api/cart/item/${id}`, {
     method: "DELETE",
     headers: {
@@ -22,14 +21,14 @@ export const deleteCartItem = async (id) => {
   });
 
   const result = await response.json();
-  console.log(result, "deleted result");
+  console.log(result, "DELETED");
   return result;
 };
 
 //------------add item to user cart  ----
 export const addCartItem = async (itemId, orderId, inquantity) => {
   let quantity = +inquantity;
-  console.log(itemId, orderId, quantity);
+
   const response = await fetch(`/api/cart/`, {
     method: "POST",
     headers: {
@@ -42,14 +41,12 @@ export const addCartItem = async (itemId, orderId, inquantity) => {
     }),
   });
   const result = await response.json();
-  console.log(result, "result from adding to cart frontend");
+  console.log(result, "ADDED");
   return result;
 };
 //---------edit quantity in user cart
 export const editCartQuantity = async (id, inquantity) => {
-  console.log(id, "THE ORDERID WE EDIT");
   let quantity = +inquantity;
-  console.log(quantity, "works aswell");
   //CONSOLE.LOG ABOVE FIRES
   const response = await fetch(`/api/cart/item/${id}`, {
     method: "PATCH",
@@ -61,7 +58,7 @@ export const editCartQuantity = async (id, inquantity) => {
     }),
   });
   const result = await response.json();
-  console.log(result, "NEEDS TO FIRE FOR EDIT TO WORK");
+  console.log(result, "EDITED");
   return result;
 };
 
