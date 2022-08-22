@@ -3,11 +3,9 @@ import { useParams } from "react-router-dom";
 import { fetchSingleItem } from "../api/items";
 import { editItem } from "../axios-services";
 import { Link, useNavigate } from "react-router-dom";
-// import useSingleItem from "../Hooks/useSingleItem";
 
 const EditItem = () => {
   const [singleItem, setSingleItem] = useState({});
-  // const { singleItem, setSingleItem } = useSingleItem();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");

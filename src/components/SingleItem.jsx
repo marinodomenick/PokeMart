@@ -4,12 +4,14 @@ import { fetchSingleItem, fetchAllItems } from "../api/items";
 import { destroyItem } from "../axios-services";
 import useAuth from "../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import useItems from "../Hooks/useItems";
 
 //note this page is off api/itemS/#
 
 // delete button works, but you do have to refresh in order for the site to register that it's gone
 export default function SingleItem() {
   const { user } = useAuth();
+  const { setItems } = useItems();
   const [singleItem, setSingleItem] = useState({});
   let { id } = useParams();
   const navigate = useNavigate();
@@ -37,9 +39,11 @@ export default function SingleItem() {
         ) : null}
         {user.isAdmin ? (
           <button
-            onClick={() => {
-              destroyItem(id);
-              fetchAllItems();
+            onClick={async (e) => {
+              e.preventDefault();
+              await destroyItem(id);
+              const newItems = await fetchAllItems();
+              setItems(newItems)
               navigate("/items");
             }}
           >

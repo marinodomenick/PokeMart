@@ -8,7 +8,6 @@ export default function ItemsProvider({ children }) {
   useEffect(() => {
     const getAllItems = async () => {
       const items = await fetchAllItems();
-
       setItems(items);
     };
     getAllItems();

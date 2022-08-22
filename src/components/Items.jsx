@@ -5,6 +5,7 @@ import "../style/index.css";
 
 export default function Items() {
   const { items } = useItems();
+  console.log("items?", items)
   const itemsToDisplay = items.map((item, i) => {
     return (
       <div className="wrapper">

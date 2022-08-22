@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createItem } from "../axios-services";
 import { Link, useNavigate } from "react-router-dom";
+import useItems from "../Hooks/useItems";
+import { fetchAllItems } from "../api/items";
 
 const CreateItem = () => {
   const [item, setItem] = useState({});
@@ -11,6 +13,7 @@ const CreateItem = () => {
   const [stock, setStock] = useState(0);
   const [floorId, setFloorId] = useState(0);
   const [imgUrl, setImgUrl] = useState("");
+  const { setItems } = useItems();
 
   const navigate = useNavigate();
 
@@ -37,7 +40,8 @@ const CreateItem = () => {
           setStock(0);
           setFloorId(0);
           setImgUrl("");
-
+          const newItems = await fetchAllItems();
+          setItems(newItems)
           navigate(`/items`);
         }}
       >
