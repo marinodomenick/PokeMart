@@ -109,10 +109,13 @@ export async function editItem(
   name,
   type,
   description,
-  price,
-  stock,
-  floorId
+  sPrice,
+  sStock,
+  sFloorId
 ) {
+  let price = +sPrice;
+  let stock = +sStock;
+  let floorId = +sFloorId;
   try {
     const { data } = await axios.patch(`/api/items/${id}`, {
       name,
@@ -132,13 +135,16 @@ export async function createItem(
   name,
   type,
   description,
-  price,
-  stock,
-  floorId,
+  sPrice,
+  sStock,
+  sFloorId,
   imgUrl
 ) {
+  let price = +sPrice;
+  let stock = +sStock;
+  let floorId = +sFloorId;
   try {
-    const { data } = axios.create(`/api/items/`, {
+    const { data } = await axios.post(`/api/items`, {
       name,
       type,
       description,

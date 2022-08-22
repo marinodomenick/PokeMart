@@ -7,14 +7,12 @@ const CreateItem = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [stock, setStock] = useState("");
-  const [floorId, setFloorId] = useState("");
+  const [price, setPrice] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [floorId, setFloorId] = useState(0);
   const [imgUrl, setImgUrl] = useState("");
 
   const navigate = useNavigate();
-
-  // this doesn't actually create anything, not even hitting the back-end route. we must create Big Tony.
 
   return (
     <div>
@@ -30,18 +28,17 @@ const CreateItem = () => {
             floorId,
             imgUrl
           );
-          console.log("the newItemResponse is: ", newItemResponse);
           setItem(newItemResponse);
           console.log("the newly created item is: ", item);
           setName("");
           setType("");
           setDescription("");
-          setPrice("");
-          setStock("");
-          setFloorId("");
+          setPrice(0);
+          setStock(0);
+          setFloorId(0);
           setImgUrl("");
 
-          //   navigate(`/items`);
+          navigate(`/items`);
         }}
       >
         <input

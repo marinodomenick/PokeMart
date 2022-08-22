@@ -84,7 +84,13 @@ const EditItem = () => {
         />
         <button type="submit">Update Item</button>
       </form>
-      <Link to="/items/:id">Cancel</Link>
+      <button
+        onClick={() => {
+          navigate(`/items/${id}`);
+        }}
+      >
+        Cancel
+      </button>
     </div>
   );
 };

@@ -63,7 +63,7 @@ itemsRouter.delete("/:id", async (req, res, next) => {
 itemsRouter.patch("/:id", async (req, res, next) => {
   const { name, type, description, price, stock, floorId } = req.body;
   try {
-    const patchItem = await prisma.item.update({
+    const patchItem = await prisma.items.update({
       where: {
         id: +req.params.id,
       },
@@ -78,7 +78,7 @@ itemsRouter.patch("/:id", async (req, res, next) => {
 itemsRouter.post("/", async (req, res, next) => {
   const { name, type, description, price, stock, floorId, imgUrl } = req.body;
   try {
-    const createItem = await prisma.item.create({
+    const createItem = await prisma.items.create({
       data: { name, type, description, price, stock, floorId, imgUrl },
     });
     res.send(createItem);

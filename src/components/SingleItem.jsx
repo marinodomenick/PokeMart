@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSingleItem } from "../api/items";
+import { fetchSingleItem, fetchAllItems } from "../api/items";
 import { destroyItem } from "../axios-services";
 import useAuth from "../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
@@ -26,12 +26,21 @@ export default function SingleItem() {
     <>
       <div className="itemCard">
         <div>Single Item Page</div>
-        {user.isAdmin ? <Link to="/edititem/:id">Edit Item</Link> : null}
+        {user.isAdmin ? (
+          <button
+            onClick={() => {
+              navigate(`/edititem/${id}`);
+            }}
+          >
+            Edit Item
+          </button>
+        ) : null}
         {user.isAdmin ? (
           <button
             onClick={() => {
               destroyItem(id);
-              navigate("/home");
+              fetchAllItems();
+              navigate("/items");
             }}
           >
             Delete Item
