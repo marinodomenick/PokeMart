@@ -11,3 +11,4 @@ export { default as Home } from "./Home";
 export { default as HNavBar } from "./HNavBar";
 export { default as VNavBar } from "./VNavBar";
 export { default as Cart } from "./Cart";
+export { default as Purchase } from "./Purchase";

@@ -53,9 +53,9 @@ export async function registerUser(username, password, name, email, address) {
       email: email,
       address: address,
     });
-    return data
-  } catch(err) {
-    console.error(err)
+    return data;
+  } catch (err) {
+    console.error(err);
   }
 }
 
@@ -63,11 +63,11 @@ export async function loginUser(username, password) {
   try {
     const { data } = await axios.post("/api/auth/login", {
       username: username,
-      password: password
+      password: password,
     });
-    return data
-  } catch(err) {
-    console.error(err)
+    return data;
+  } catch (err) {
+    console.error(err);
   }
 }
 
@@ -80,17 +80,17 @@ export async function updateUser(id, username, password, name, email, address) {
       email: email,
       address: address,
     });
-    return data
-  } catch(err) {
-    console.error(err)
+    return data;
+  } catch (err) {
+    console.error(err);
   }
 }
 
 export async function getMe() {
   try {
     const { data } = await axios.get("/api/auth/me");
-    return data
-  } catch(err) {
-    console.error(err)
+    return data;
+  } catch (err) {
+    console.error(err);
   }
 }

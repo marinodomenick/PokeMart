@@ -16,6 +16,7 @@ import {
   VNavBar,
   F1,
   Cart,
+  Purchase,
 } from "../components";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/items/floor/:id" element={<F1 />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/purchase" element={<Purchase />} />
         </Routes>
       </div>
     </>

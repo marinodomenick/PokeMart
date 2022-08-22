@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useCart from "../Hooks/useCart";
-import { deleteCartItem, editCartQuantity, deleteCart } from "../api/cart";
-
+import {
+  deleteCartItem,
+  editCartQuantity,
+  deleteCart,
+  purchaseCart,
+  createNewCart,
+} from "../api/cart";
+import useAuth from "../Hooks/useAuth";
 export default function Cart() {
   const { cartItems } = useCart();
+  const { user } = useAuth();
   const [quantity, setQuantity] = useState("");
+  const [isFulfilled, setisfulfilled] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   return cartItems.length !== 0 ? (
     <>
@@ -71,10 +82,14 @@ export default function Cart() {
                     onClick={async (event) => {
                       event.preventDefault();
                       console.log("purchase button");
-                      //needs to set current cart
-                      //isFulfilled = true
-                      //create new cart isfulfilled=False
-                      //link to page saying purchase successful
+                      //CANT SWITCH ACTIVE CART TO ISFULFILLED TRUE
+                      //BUT CAN CREATE A NEW CART ISFULFILLED FALSE
+                      setisfulfilled(true);
+                      console.log(isFulfilled); //CURRENLLY FALSE. PROBLEM HERE
+                      await purchaseCart(user.id, isFulfilled);
+                      setisfulfilled(false);
+                      await createNewCart(user.id, totalPrice, user.address);
+                      navigate("/purchase");
                     }}
                   >
                     Purchase

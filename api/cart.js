@@ -1,24 +1,33 @@
 const cartRouter = require("express").Router();
 
 const prisma = require("../db/prisma");
+const { authRequired } = require("./utils");
 
 //----------------------------------ALL ORDERS FOR USER-------------------------------------
 
-cartRouter.get("/orders/user/:userId", async (req, res, next) => {
-  try {
-    const userOrders = await prisma.orders.findMany({
-      where: {
-        userId: +req.params.userId,
-      },
-    });
-    res.send(userOrders);
-  } catch (error) {
-    next(error);
+//PATCH ACTIVE CART ISFULFILLED = TRUE
+cartRouter.patch(
+  "/orders/active/user/:userId",
+  authRequired,
+  async (req, res, next) => {
+    const { isFulfilled } = req.body;
+    try {
+      const userOrderComplete = await prisma.orders.update({
+        where: {
+          isFulfilled: false,
+        },
+        data: {
+          isFulfilled,
+        },
+      });
+      res.send(userOrderComplete);
+    } catch (error) {
+      next(error);
+    }
   }
-});
-
+);
 //---------------------------------------ACTIVE CART FOR USER----------------------------------------------
-//GET ITEMS FROM ACTIVE CART
+//GET ITEMS FROM ACTIVE CART ==> fetchallcartitems
 cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
   try {
     const activeUserOrder = await prisma.orders.findMany({
@@ -40,102 +49,15 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
   }
 });
 
-//-------GET----DELETE----PATCH---ALL CART ITEMS---------
-//GET ALL ITEMS IN CART
-cartRouter.get("/:orderId", async (req, res, next) => {
-  try {
-    const cart = await prisma.orderitems.findMany({
-      where: {
-        orderId: +req.params.orderId,
-      },
-    });
-    res.send(cart);
-  } catch (error) {
-    next(error);
-  }
-});
-//DELETE CART ITEM
-cartRouter.delete("/item/:id", async (req, res, next) => {
-  try {
-    const deleteitem = await prisma.orderitems.delete({
-      where: {
-        id: +req.params.id,
-      },
-    });
-    res.send(deleteitem);
-  } catch (error) {
-    next(error);
-  }
-});
-//UPDATE CART ITEM
-cartRouter.patch("/item/:id", async (req, res, next) => {
-  const { quantity } = req.body;
-  try {
-    const updateitem = await prisma.orderitems.update({
-      where: {
-        id: +req.params.id,
-      },
-      data: {
-        quantity: quantity,
-      },
-    });
-    res.send(updateitem);
-  } catch (error) {
-    next(error);
-  }
-});
-
-//DELETE WHOLE CART ... Safer to delete all items in cart
-// cartRouter.delete("/:id", async (req, res, next) => {
-//   try {
-//     const cart = await prisma.orders.delete({
-//       where: {
-//         id: +req.params.id,
-//       },
-//     });
-//     res.send(cart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-//------DELETE/GET/POST ALL ITEMS IN CART-----
-cartRouter.delete("/:orderId", async (req, res, next) => {
-  try {
-    const cart = await prisma.orderitems.deleteMany({
-      where: {
-        orderId: +req.params.orderId,
-      },
-    });
-    res.send(cart);
-  } catch (error) {
-    next(error);
-  }
-});
-//GETS ALL ITEMS IN CART
-cartRouter.get("/:orderId", async (req, res, next) => {
-  try {
-    const cart = await prisma.orderitems.findMany({
-      where: {
-        orderId: {
-          contains: req.params.orderId,
-        },
-      },
-    });
-    res.send(cart);
-  } catch (error) {
-    next(error);
-  }
-});
-//CREATE NEW ITEM FOR CART
+//create new cart
 cartRouter.post("/", async (req, res, next) => {
-  const { itemId, orderId, quantity } = req.body;
+  const { userId, totalPrice, shippingAddress } = req.body;
   try {
-    const cart = await prisma.orderitems.create({
+    const cart = await prisma.orders.create({
       data: {
-        itemId: itemId,
-        orderId: orderId,
-        quantity: quantity,
+        userId,
+        totalPrice,
+        shippingAddress,
       },
     });
     res.send(cart);
