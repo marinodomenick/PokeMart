@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import useCart from "../Hooks/useCart";
-import { deleteCartItem } from "../api/cart";
+import { deleteCartItem, editCartQuantity, deleteCart } from "../api/cart";
 
 export default function Cart() {
   const { cartItems } = useCart();
-  console.log(cartItems, "big win here");
-  console.log(cartItems);
+  const [quantity, setQuantity] = useState("");
 
   return cartItems.length !== 0 ? (
     <>
@@ -30,19 +29,47 @@ export default function Cart() {
                         {orderitem.quantity}
                         <span> Unit price: {orderitem.items.price}</span>
                       </p>
+                      <span>
+                        <form
+                          onSubmit={async (event) => {
+                            event.preventDefault();
+                            await editCartQuantity(orderitem.id, quantity);
+                            console.log("U MADE IT PAST THE BLOCK");
+                          }}
+                        >
+                          <input
+                            type="number"
+                            placeholder="Quantity"
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                          />
+                          <button type="submit">Edit Quantity</button>
+                        </form>
+                        <button
+                          onClick={async (event) => {
+                            event.preventDefault();
+                            console.log("del button pressed");
+                            await deleteCartItem(orderitem.id);
+                          }}
+                        >
+                          Delete Item
+                        </button>
+                      </span>
                     </>
                   );
                 })}
                 <span>
-                  <button>Edit</button>{" "}
+                  {/* THIS IS DELETE WHOLE CART BUTTON */}
                   <button
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      const result = await deleteCartItem();
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      console.log(cartItems[0].id, "TRICK TO GRAB CART ID");
+                      await deleteCart(cartItems[0].id);
                     }}
                   >
-                    Delete
+                    Clear Cart
                   </button>
+                  {/* THIS BUTTON NEEDS TO ALSO RUN A FUNCTION TO CREATE NEW CART */}
                 </span>
               </h4>
             </div>

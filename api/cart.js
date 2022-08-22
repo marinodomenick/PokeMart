@@ -17,7 +17,7 @@ cartRouter.get("/orders/user/:userId", async (req, res, next) => {
   }
 });
 
-//-----------------------------------ACTIVE CART FOR USER----------------------------------------------
+//---------------------------------------ACTIVE CART FOR USER----------------------------------------------
 //GET ITEMS FROM ACTIVE CART
 cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
   try {
@@ -39,7 +39,28 @@ cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
     next(error);
   }
 });
-
+//ADD ITEM TO ACTIVE CART...??? --
+cartRouter.post("/orders/active/user/:orderId", async (req, res, next) => {
+  try {
+    //maybe worth including orderitems and maping over active order..?
+    const itemAddedToCart = await prisma.orderitems.create({
+      // where: {
+      //   orderId: req.params.orderId,
+      // },
+      data: {
+        itemId: req.params.itemId,
+        orderId: req.params.orderId,
+        quantity: req.params.quantity,
+      },
+    });
+    console.log(itemAddedToCart, "from cartRouter");
+    res.send(itemAddedToCart);
+  } catch (error) {
+    next(error);
+  }
+});
+//-------GET----DELETE----PATCH---ALL CART ITEMS---------
+//GET ALL ITEMS IN CART
 cartRouter.get("/:orderId", async (req, res, next) => {
   try {
     const cart = await prisma.orderitems.findMany({
@@ -52,8 +73,8 @@ cartRouter.get("/:orderId", async (req, res, next) => {
     next(error);
   }
 });
-
-cartRouter.delete("/:id", async (req, res, next) => {
+//DELETE CART ITEM
+cartRouter.delete("/item/:id", async (req, res, next) => {
   try {
     const deleteitem = await prisma.orderitems.delete({
       where: {
@@ -65,8 +86,8 @@ cartRouter.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-cartRouter.patch("/:id", async (req, res, next) => {
+//UPDATE CART ITEM
+cartRouter.patch("/item/:id", async (req, res, next) => {
   const { quantity } = req.body;
   try {
     const updateitem = await prisma.orderitems.update({
@@ -83,54 +104,62 @@ cartRouter.patch("/:id", async (req, res, next) => {
   }
 });
 
-// Checkout out a cart, set isfullilled === true
-
-//WE NEED SOME WAY OF PREVENTING USERS FROM
-//HAVING TWO ACTIVE CARTS
-
-// cartRouter.post("/orders/active/user/:userId", async (req, res, next) => {
+//DELETE WHOLE CART ... Safer to delete all items in cart
+// cartRouter.delete("/:id", async (req, res, next) => {
 //   try {
-//     const addToActiveCart = await prisma.orders.createMany({
+//     const cart = await prisma.orders.delete({
 //       where: {
-//         isFulfilled: false,
-//         userId: +req.params.userId,
+//         id: +req.params.id,
 //       },
 //     });
-//     res.send(addToActiveCart);
+//     res.send(cart);
 //   } catch (error) {
 //     next(error);
 //   }
 // });
 
-// cartRouter.patch("/orders/:userId/active", async (req, res, next) => {
-//   try {
-//     const updatedActiveCart = await prisma.orders.update({
-//       where: {
-//         isFulfilled: false,
-//         userId: +req.params.userId,
-//       },
-//       data: req.body,
-//     });
-//     res.send(updatedActiveCart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+cartRouter.delete("/:orderId", async (req, res, next) => {
+  try {
+    const cart = await prisma.orderitems.deleteMany({
+      where: {
+        orderId: +req.params.orderId,
+      },
+    });
+    res.send(cart);
+  } catch (error) {
+    next(error);
+  }
+});
 
-// cartRouter.delete("/orders/:userId/active", async (req, res, next) => {
-//   try {
-//     const updatedActiveCart = await prisma.orders.delete({
-//       where: {
-//         isFulfilled: false,
-//         userId: +req.params.userId,
-//       },
+cartRouter.get("/:orderId", async (req, res, next) => {
+  try {
+    const cart = await prisma.orderitems.findMany({
+      where: {
+        orderId: {
+          contains: req.params.orderId,
+        },
+      },
+    });
+    res.send(cart);
+  } catch (error) {
+    next(error);
+  }
+});
 
-//     });
-//     res.send(updatedActiveCart);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+cartRouter.post("/:orderId", async (req, res, next) => {
+  try {
+    const cart = await prisma.orderitems.create({
+      where: {
+        orderId: {
+          contains: req.params.orderId,
+        },
+      },
+    });
+    res.send(cart);
+  } catch (error) {
+    next(error);
+  }
+});
 
 //--------RANDOM NOTES SECTION BELOW--------
 //edit button will need to have a click event to target the Id so we know which item we are editing
