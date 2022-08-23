@@ -6,26 +6,23 @@ const { authRequired } = require("./utils");
 //----------------------------------ALL ORDERS FOR USER-------------------------------------
 
 //PATCH ACTIVE CART ISFULFILLED = TRUE
-cartRouter.patch(
-  "/orders/active/user/:userId",
-  authRequired,
-  async (req, res, next) => {
-    const { isFulfilled } = req.body;
-    try {
-      const userOrderComplete = await prisma.orders.update({
-        where: {
-          isFulfilled: false,
-        },
-        data: {
-          isFulfilled,
-        },
-      });
-      res.send(userOrderComplete);
-    } catch (error) {
-      next(error);
-    }
+cartRouter.patch("/orders/:orderId", authRequired, async (req, res, next) => {
+  const { isFulfilled } = req.body;
+  try {
+    const userOrderComplete = await prisma.orders.update({
+      where: {
+        id: +req.params.orderId,
+      },
+      data: {
+        isFulfilled: true,
+      },
+    });
+    console.log(userOrderComplete, "for matt");
+    res.send(userOrderComplete);
+  } catch (error) {
+    next(error);
   }
-);
+});
 //---------------------------------------ACTIVE CART FOR USER----------------------------------------------
 //GET ITEMS FROM ACTIVE CART ==> fetchallcartitems
 cartRouter.get("/orders/active/user/:userId", async (req, res, next) => {
