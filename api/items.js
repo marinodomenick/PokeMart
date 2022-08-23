@@ -3,8 +3,13 @@ const itemsRouter = require("express").Router();
 const prisma = require("../db/prisma");
 
 itemsRouter.get("/", async (req, res, next) => {
+  const { page } = req.query;
+  const pageNum = +page;
+  console.log("the page in the itemsRouter is: ", page);
   try {
     const items = await prisma.items.findMany({
+      skip: 30 * pageNum - 30,
+      take: 30,
       include: {
         orderitems: {
           include: {
@@ -33,8 +38,12 @@ itemsRouter.get("/:id", async (req, res, next) => {
 });
 
 itemsRouter.get("/floor/:floorId", async (req, res, next) => {
+  const { page } = req.query;
+  const pageNum = +page;
   try {
     const item = await prisma.items.findMany({
+      skip: 30 * pageNum - 30,
+      take: 30,
       where: {
         floorId: +req.params.floorId,
       },

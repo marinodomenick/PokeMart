@@ -7,7 +7,7 @@ import { addCartItem } from "../axios-services";
 import ItemCard from "./ItemCard";
 
 export default function Items() {
-  const { items } = useItems();
+  const { items, page, setPage } = useItems();
   const itemsToDisplay = items.map((item, i) => {
     return (
       <div>
@@ -16,5 +16,41 @@ export default function Items() {
     );
   });
   console.log("The Items component has rendered");
-  return <div>{itemsToDisplay}</div>;
+  return (
+    <div>
+      <button
+        onClick={(e) => {
+          setPage(() => page - 1);
+        }}
+        disabled={page === 1}
+      >
+        Previous
+      </button>
+      <button
+        onClick={(e) => {
+          setPage(() => page + 1);
+        }}
+        disabled={items.length < 30}
+      >
+        Next
+      </button>
+      {itemsToDisplay}
+      <button
+        onClick={(e) => {
+          setPage(() => page - 1);
+        }}
+        disabled={page === 1}
+      >
+        Previous
+      </button>
+      <button
+        onClick={(e) => {
+          setPage(() => page + 1);
+        }}
+        disabled={items.length < 30}
+      >
+        Next
+      </button>
+    </div>
+  );
 }
