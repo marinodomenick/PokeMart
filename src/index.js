@@ -5,17 +5,20 @@ import { BrowserRouter } from "react-router-dom";
 import ItemsProvider from "./components/ItemsProvider";
 import "./style/index.css";
 import AuthProvider from "./components/AuthProvider";
+import UsersProvider from "./components/UsersProvider";
 import CartProvider from "./components/CartProvider";
 
 ReactDOM.render(
   <AuthProvider>
-    <CartProvider>
-      <BrowserRouter>
-        <ItemsProvider>
-          <App />
-        </ItemsProvider>
-      </BrowserRouter>
-    </CartProvider>
+    <UsersProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <ItemsProvider>
+            <App />
+          </ItemsProvider>
+        </BrowserRouter>
+      </CartProvider>
+    </UsersProvider>
   </AuthProvider>,
 
   document.getElementById("root")

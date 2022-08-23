@@ -15,12 +15,17 @@ import {
   HNavBar,
   VNavBar,
   F1,
+  AllUsers,
+  EditItem,
+  CreateItem,
   Cart,
   Purchase,
 } from "../components";
+import useAuth from "../Hooks/useAuth";
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState("");
+  const { user } = useAuth();
 
   useEffect(() => {
     const getAPIStatus = async () => {
@@ -47,6 +52,15 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/home" element={<Home />} />
           <Route path="/items/floor/:id" element={<F1 />} />
+          {user.isAdmin ? (
+            <Route path="/allusers" element={<AllUsers />} />
+          ) : null}
+          {user.isAdmin ? (
+            <Route path="/edititem/:id" element={<EditItem />} />
+          ) : null}
+          {user.isAdmin ? (
+            <Route path="/createitem" element={<CreateItem />} />
+          ) : null}
           <Route path="/cart" element={<Cart />} />
           <Route path="/purchase" element={<Purchase />} />
         </Routes>

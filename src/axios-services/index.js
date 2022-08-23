@@ -94,3 +94,67 @@ export async function getMe() {
     console.error(err);
   }
 }
+
+export async function destroyItem(id) {
+  try {
+    const { data } = await axios.delete(`/api/items/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function editItem(
+  id,
+  name,
+  type,
+  description,
+  sPrice,
+  sStock,
+  sFloorId
+) {
+  let price = +sPrice;
+  let stock = +sStock;
+  let floorId = +sFloorId;
+  try {
+    const { data } = await axios.patch(`/api/items/${id}`, {
+      name,
+      type,
+      description,
+      price,
+      stock,
+      floorId,
+    });
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function createItem(
+  name,
+  type,
+  description,
+  sPrice,
+  sStock,
+  sFloorId,
+  imgUrl
+) {
+  let price = +sPrice;
+  let stock = +sStock;
+  let floorId = +sFloorId;
+  try {
+    const { data } = await axios.post(`/api/items`, {
+      name,
+      type,
+      description,
+      price,
+      stock,
+      floorId,
+      imgUrl,
+    });
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}

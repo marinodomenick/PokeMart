@@ -10,6 +10,7 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  // fix this????? loginResponse vs loginResponse.user
   return (
     <div className="login">
       {errorMessage ? <h4>{errorMessage}</h4> : null}
@@ -18,10 +19,11 @@ export default function Login() {
         onSubmit={async (e) => {
           e.preventDefault();
           const loginResponse = await loginUser(username, password);
-          console.log("outcome of login response: ");
-          if (loginResponse) {
+          console.log("outcome of login response: ", loginResponse);
+          console.log("loginResponse.user is: ", loginResponse.user);
+          if (loginResponse.user) {
             setErrorMessage("");
-            setUser(loginResponse);
+            setUser(loginResponse.user);
             setPassword("");
             setUsername("");
 

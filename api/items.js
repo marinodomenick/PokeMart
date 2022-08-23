@@ -46,4 +46,44 @@ itemsRouter.get("/floor/:floorId", async (req, res, next) => {
   }
 });
 
+itemsRouter.delete("/:id", async (req, res, next) => {
+  try {
+    const deleteItem = await prisma.items.delete({
+      where: {
+        id: +req.params.id,
+      },
+    });
+    res.send(deleteItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+itemsRouter.patch("/:id", async (req, res, next) => {
+  const { name, type, description, price, stock, floorId } = req.body;
+  try {
+    const patchItem = await prisma.items.update({
+      where: {
+        id: +req.params.id,
+      },
+      data: { name, type, description, price, stock, floorId },
+    });
+    res.send(patchItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+itemsRouter.post("/", async (req, res, next) => {
+  const { name, type, description, price, stock, floorId, imgUrl } = req.body;
+  try {
+    const createItem = await prisma.items.create({
+      data: { name, type, description, price, stock, floorId, imgUrl },
+    });
+    res.send(createItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = itemsRouter;
