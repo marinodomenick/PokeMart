@@ -237,6 +237,16 @@ export async function editCartQuantity(id, inquantity) {
   }
 }
 
+//-----------CLEAR WHOLE CART OF ITEMS
+export async function deleteCart(id) {
+  try {
+    const { data } = await axios.delete(`/api/orderitems/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // try{}
 //   catch (err) {
 //     console.error(err)
