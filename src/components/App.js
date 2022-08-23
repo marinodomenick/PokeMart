@@ -16,6 +16,8 @@ import {
   VNavBar,
   F1,
   AllUsers,
+  EditItem,
+  CreateItem,
 } from "../components";
 import useAuth from "../Hooks/useAuth";
 
@@ -50,6 +52,12 @@ const App = () => {
           <Route path="/items/floor/:id" element={<F1 />} />
           {user.isAdmin ? (
             <Route path="/allusers" element={<AllUsers />} />
+          ) : null}
+          {user.isAdmin ? (
+            <Route path="/edititem/:id" element={<EditItem />} />
+          ) : null}
+          {user.isAdmin ? (
+            <Route path="/createitem" element={<CreateItem />} />
           ) : null}
         </Routes>
       </div>
