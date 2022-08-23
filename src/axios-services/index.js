@@ -247,6 +247,33 @@ export async function deleteCart(id) {
   }
 }
 
+export const fetchAllItems = async () => {
+  try {
+    const { data } = await axios.get("/api/items");
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchSingleItem = async (id) => {
+  try {
+    const { data } = await axios.get(`/api/items/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export async function fetchItemsByFloor(floorId) {
+  try {
+    const { data } = await axios.get(`/api/items/floor/${floorId}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // try{}
 //   catch (err) {
 //     console.error(err)
