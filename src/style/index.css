@@ -1,8 +1,9 @@
 /* import fonts here */
-
 body {
   box-sizing: border-box;
-  background-color: #e299fb;
+  /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJK6b8th8ijd-eqs316WblQmn3aFvQPIXhsQ&usqp=CAU);
+  background-repeat: repeat;
+  background-size: 90px; */
 }
 
 :root {
@@ -16,11 +17,91 @@ html {
   touch-action: manipulation;
 }
 
-body {
-  margin: 0;
+.HNavBar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+/* .hnav {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0;
+} */
+.navbars {
+  position: sticky;
+  top: 0;
+}
+
+.hNavi {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: rgb(119, 149, 158);
+  border: solid 1px rgb(55, 74, 109);
+  margin-bottom: 15px
+}
+
+.vNavi {
+  z-index: 100;
+  top: -125px;
+  float: left;
+}
+
+.myAccLink {
+  border: solid 1px rgb(110, 45, 50);
+  background-color: rgb(216, 107, 116);
+  height: 35px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white
+}
+
+.floors {
+  list-style-type: none;
+  margin-bottom: 0;
+  height: 542px;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
+  width: 150px;
+  background-color: rgb(241, 212, 147);
+  border: solid 1px rgb(196, 125, 93);
+  display: flex;
+  /* align-items: space-between; */
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.vNavi > Link {
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+}
+
+.vertStuff {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertContent {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.floorHeader {
+  background-color: rgb(241, 212, 147);
+  border: solid 1px rgb(196, 125, 93);
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin-left: 0;
+  padding: 0;
+  height: 1500px;
+  width: 1400px;
 }
 
 .wrapper {
@@ -31,14 +112,19 @@ body {
 }
 
 .itemCard {
-  background-color: rgb(221, 176, 117);
+  background-color: rgb(90, 162, 196);
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  margin-left: 10px;
+  margin-bottom: 20px;
   flex-direction: column;
   flex-wrap: wrap;
-  border-style: dotted;
-  min-width: 100px;
-  max-width: 200px;
+  border-style:double;
+  border-color: rgb(24, 76, 119);
+  min-width: 300px;
+  max-height: 300px;
+  float: right;
+  padding: 15px
 }
 
 .itemCard:hover {
@@ -49,13 +135,12 @@ button:hover {
   background-color: rgb(120, 179, 199);
 }
 
-.vNavi {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: rgb(173, 173, 173);
-  border-style: solid;
+a:hover, a:visited:hover {
+  color: rgb(255, 238, 140)
+}
+
+a:visited {
+  color: inherit
 }
 
 #Link {
@@ -78,3 +163,4 @@ button:hover {
 * {
   cursor: url(https://cur.cursors-4u.net/games/gam-6/gam558.cur), auto !important;
 }
+

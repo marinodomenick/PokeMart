@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { getAPIHealth } from "../axios-services";
-import "../style/App.css";
+import "../style/index.css";
 
 import {
   Login,
@@ -36,10 +36,14 @@ const App = () => {
   return (
     <>
       <div>
+        <div className="navbars">
         <HNavBar />
+          {/* <div className="verticalNav"> */}
         <VNavBar />
-        <h1>Hello, World!</h1>
-        <p>API Status: {APIHealth}</p>
+        {/* </div> */}
+        </div>
+        <div className="vertContent">
+        <h2 className="floorHeader">1F - Trainer Zone</h2>
         <Routes>
           <Route path="/items" element={<Items />} />
           <Route path="/items/:id" element={<SingleItem />} />
@@ -60,6 +64,7 @@ const App = () => {
             <Route path="/createitem" element={<CreateItem />} />
           ) : null}
         </Routes>
+        </div>
       </div>
     </>
   );
