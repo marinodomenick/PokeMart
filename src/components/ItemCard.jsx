@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addCartItem } from "../api/cart";
+import { addCartItem } from "../axios-services";
 import useCart from "../Hooks/useCart";
 
 function ItemCard({ item }) {

@@ -242,9 +242,9 @@ export async function deleteCart(id) {
   }
 }
 
-export const fetchAllItems = async () => {
+export const fetchAllItems = async (pageNum) => {
   try {
-    const { data } = await axios.get("/api/items");
+    const { data } = await axios.get(`/api/items?page=${pageNum}`);
     return data;
   } catch (err) {
     console.error(err);
@@ -260,9 +260,11 @@ export const fetchSingleItem = async (id) => {
   }
 };
 
-export async function fetchItemsByFloor(floorId) {
+export async function fetchItemsByFloor(floorId, pageNum) {
   try {
-    const { data } = await axios.get(`/api/items/floor/${floorId}`);
+    const { data } = await axios.get(
+      `/api/items/floor/${floorId}?page=${pageNum}`
+    );
     return data;
   } catch (err) {
     console.error(err);
