@@ -1,9 +1,17 @@
 /* import fonts here */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+  font-family: 'Press Start 2P', cursive;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   box-sizing: border-box;
-  /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJK6b8th8ijd-eqs316WblQmn3aFvQPIXhsQ&usqp=CAU);
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/737365ba-5550-41f7-a303-56f0f4aa08f6/dfbw2oz-50640931-96d9-4179-8c74-4427c3973450.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzczNzM2NWJhLTU1NTAtNDFmNy1hMzAzLTU2ZjBmNGFhMDhmNlwvZGZidzJvei01MDY0MDkzMS05NmQ5LTQxNzktOGM3NC00NDI3YzM5NzM0NTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZYTKRHQq85Rdrmrz3LiSUraULD5eOuegbpCdaPowHtA);
   background-repeat: repeat;
-  background-size: 90px; */
+  background-size: 130px;
 }
 
 :root {
@@ -19,7 +27,8 @@ html {
 
 .HNavBar {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
 }
 /* .hnav {
@@ -37,7 +46,7 @@ html {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: rgb(119, 149, 158);
+  background-color: rgb(112, 169, 187);
   border: solid 1px rgb(55, 74, 109);
   margin-bottom: 15px
 }
@@ -97,6 +106,12 @@ html {
   justify-content: center;
 }
 
+/* .banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
 body {
   margin-left: 0;
   padding: 0;
@@ -109,6 +124,11 @@ body {
 
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.myAcc {
+  background-color: #78b3c7;
+  border: solid 1px rgb(55, 74, 109);
 }
 
 .itemCard {
@@ -127,8 +147,24 @@ body {
   padding: 15px
 }
 
+.singleItemCard {
+  background-color: rgb(90, 162, 196);
+  display: flex;
+  gap: 25px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-style:double;
+  border-color: rgb(24, 76, 119);
+  min-width: 300px;
+  max-height: 300px;
+  float: right;
+  padding: 15px
+}
+
 .itemCard:hover {
-  background-color: rgb(120, 179, 199);
+  background-color: #78b3c7;
 }
 
 button:hover {
@@ -151,7 +187,7 @@ a:visited {
 }
 
 #Link:hover {
-  background-color: red;
+  background-color: rgb(212, 181, 133);
   color: white;
   cursor: url(https://cur.cursors-4u.net/games/gam-7/gam625.cur), auto !important;
 }

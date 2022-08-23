@@ -19,7 +19,7 @@ const MyAccount = () => {
   }, [user])
   console.log("user data", userData)
   return (
-    <div> My Account <br/>
+    <div className='myAcc'> My Account <br/>
         <Link to="/editaccount">Edit Account Information</Link>
       <div>
         {userData?.username}
