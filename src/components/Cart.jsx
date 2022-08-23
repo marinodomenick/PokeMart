@@ -7,7 +7,7 @@ import {
   deleteCart,
   purchaseCart,
   createNewCart,
-} from "../api/cart";
+} from "../axios-services/index";
 import useAuth from "../Hooks/useAuth";
 export default function Cart() {
   const { cartItems } = useCart();

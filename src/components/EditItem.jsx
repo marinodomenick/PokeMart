@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSingleItem } from "../api/items";
-import { editItem } from "../axios-services";
-import { Link, useNavigate } from "react-router-dom";
+import { editItem, fetchSingleItem } from "../axios-services";
+import { useNavigate } from "react-router-dom";
 
 const EditItem = () => {
   const [singleItem, setSingleItem] = useState({});

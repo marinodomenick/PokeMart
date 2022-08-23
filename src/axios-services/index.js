@@ -158,3 +158,118 @@ export async function createItem(
     console.error(err);
   }
 }
+
+//------------get all items in user cart
+//for our purposes this is fetchallactivecartitems
+export async function fetchAllCartItems(userId) {
+  try {
+    const { data } = await axios.get(`/api/cart/orders/active/user/${userId}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+//--------switch cart isFulfilled = true
+export const purchaseCart = async (userid, isFullfilled) => {
+  try {
+    const { data } = await axios.patch(
+      `/api/cart/orders/active/user/${userid}`,
+      {
+        isFullfilled,
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//-----------create new cart------------
+export const createNewCart = async (userId, totalPrice, shippingAddress) => {
+  try {
+    const { data } = await axios.post(`/api/cart`, {
+      userId,
+      totalPrice,
+      shippingAddress,
+    });
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//----------delete item in user cart
+export async function deleteCartItem(id) {
+  try {
+    const { data } = await axios.delete(`/api/orderitems/item/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+//------------add item to user cart  ----
+export async function addCartItem(itemId, orderId, inquantity) {
+  let quantity = +inquantity;
+  try {
+    const { data } = await axios.post(`/api/orderitems`, {
+      itemId,
+      orderId,
+      quantity,
+    });
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+//---------edit quantity in user cart
+export async function editCartQuantity(id, inquantity) {
+  let quantity = +inquantity;
+  try {
+    const { data } = await axios.patch(`/api/orderitems/item/${id}`, {
+      quantity,
+    });
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+//-----------CLEAR WHOLE CART OF ITEMS
+export async function deleteCart(id) {
+  try {
+    const { data } = await axios.delete(`/api/orderitems/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export const fetchAllItems = async () => {
+  try {
+    const { data } = await axios.get("/api/items");
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchSingleItem = async (id) => {
+  try {
+    const { data } = await axios.get(`/api/items/${id}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export async function fetchItemsByFloor(floorId) {
+  try {
+    const { data } = await axios.get(`/api/items/floor/${floorId}`);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
