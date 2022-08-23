@@ -171,14 +171,9 @@ export async function fetchAllCartItems(userId) {
 }
 
 //--------switch cart isFulfilled = true
-export const purchaseCart = async (userid, isFullfilled) => {
+export const purchaseCart = async (orderId) => {
   try {
-    const { data } = await axios.patch(
-      `/api/cart/orders/active/user/${userid}`,
-      {
-        isFullfilled,
-      }
-    );
+    const { data } = await axios.patch(`/api/cart/orders/${orderId}`);
     return data;
   } catch (error) {
     console.error(error);
