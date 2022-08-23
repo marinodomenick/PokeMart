@@ -11,6 +11,7 @@ export default function Items() {
   const [quantity, setQuantity] = useState("");
   const itemsToDisplay = items.map((item, i) => {
     return (
+      //
       <div className="wrapper">
         <div className="itemCard" key={`Key ${i}`} id={item.id}>
           <h4 id={item.id}>{item.id}</h4>
@@ -42,6 +43,7 @@ export default function Items() {
           </span>
         </div>
       </div>
+      //
     );
   });
   console.log("The Items component has rendered");
