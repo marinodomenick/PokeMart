@@ -13,10 +13,10 @@ export default function Cart() {
   const { cartItems } = useCart();
   const { user } = useAuth();
   const [quantity, setQuantity] = useState("");
-  const [isFulfilled, setisfulfilled] = useState(false);
+  let [isFulfilled, setIsFulfilled] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
-
+  console.log(cartItems, "the cart itesm");
   return cartItems.length !== 0 ? (
     <>
       <div>
@@ -84,10 +84,11 @@ export default function Cart() {
                       console.log("purchase button");
                       //CANT SWITCH ACTIVE CART TO ISFULFILLED TRUE
                       //BUT CAN CREATE A NEW CART ISFULFILLED FALSE
-                      setisfulfilled(true);
-                      console.log(isFulfilled); //CURRENLLY FALSE. PROBLEM HERE
-                      await purchaseCart(user.id, isFulfilled);
-                      setisfulfilled(false);
+                      // setIsFulfilled(true);
+                      // console.log(isFulfilled, "before should be true"); //CURRENLLY FALSE. PROBLEM HERE
+                      await purchaseCart(cartItems[0].id);
+                      // setIsFulfilled(false);
+                      // console.log(isFulfilled, "after, should be false");
                       await createNewCart(user.id, totalPrice, user.address);
                       navigate("/purchase");
                     }}
