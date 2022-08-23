@@ -3,7 +3,7 @@ import useItems from "../Hooks/useItems";
 import useCart from "../Hooks/useCart";
 // import {useItems, useCart} from "../Hooks"
 import "../style/index.css";
-import { addCartItem } from "../api/cart";
+import { addCartItem } from "../axios-services";
 
 export default function Items() {
   const { cartItems } = useCart();

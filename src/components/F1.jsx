@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchItemsByFloor } from "../api/items";
+import { fetchItemsByFloor } from "../axios-services";
 import { useParams } from "react-router-dom";
 export default function F1() {
   const [floorItems, setFloorItems] = useState([]);

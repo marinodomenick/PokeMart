@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllItems } from "../api/items";
+import { fetchAllItems } from "../axios-services";
 import ItemsContext from "../Context/ItemsContext";
 
 export default function ItemsProvider({ children }) {

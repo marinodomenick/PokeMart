@@ -273,8 +273,3 @@ export async function fetchItemsByFloor(floorId) {
     console.error(err);
   }
 }
-
-// try{}
-//   catch (err) {
-//     console.error(err)
-//   }

@@ -1,43 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import useAuth from '../Hooks/useAuth'
-import { getUserById } from '../axios-services'
-import { Link } from 'react-router-dom'
-
+import React, { useEffect, useState } from "react";
+import useAuth from "../Hooks/useAuth";
+import { getUserById } from "../axios-services";
+import { Link } from "react-router-dom";
 
 const MyAccount = () => {
   const { user } = useAuth();
-  const [userData, setUserData] = useState({})
-  const id = user.id
-  useEffect(()=>{
+  const [userData, setUserData] = useState({});
+  const id = user.id;
+  useEffect(() => {
     async function getData() {
-      if(user) {
-      const userObj = await getUserById(id);
-      setUserData(userObj)
+      if (user) {
+        const userObj = await getUserById(id);
+        setUserData(userObj);
       }
     }
-    getData()
-  }, [user])
-  console.log("user data", userData)
+    getData();
+  }, [user]);
+  console.log("user data", userData);
   return (
-    <div> My Account <br/>
-        <Link to="/editaccount">Edit Account Information</Link>
+    <div>
+      {" "}
+      My Account <br />
+      <Link to="/editaccount">Edit Account Information</Link>
+      <br />
       <div>
         {userData?.username}
-        <br/>
+        <br />
         {userData?.name}
-        <br/>
+        <br />
         {userData?.address}
-        <br/>
+        <br />
         {userData?.email}
-        <br/>
+        <br />
         {userData?.orders}
-        <br/>
+        <br />
         {userData?.reviews}
-        
       </div>
+      {user.isAdmin ? <Link to="/allusers">View all users</Link> : null}
+      <br />
+      {user.isAdmin ? <Link to="/createitem">Create a New Item</Link> : null}
     </div>
-    
-  )
-}
+  );
+};
 
-export default MyAccount
+export default MyAccount;

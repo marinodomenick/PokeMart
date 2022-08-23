@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSingleItem, fetchAllItems } from "../api/items";
-import { destroyItem } from "../axios-services";
+import { destroyItem, fetchSingleItem, fetchAllItems } from "../axios-services";
 import useAuth from "../Hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useItems from "../Hooks/useItems";
 
 //note this page is off api/itemS/#
@@ -43,7 +42,7 @@ export default function SingleItem() {
               e.preventDefault();
               await destroyItem(id);
               const newItems = await fetchAllItems();
-              setItems(newItems)
+              setItems(newItems);
               navigate("/items");
             }}
           >
