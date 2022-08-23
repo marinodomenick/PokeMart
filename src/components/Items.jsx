@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import useItems from "../Hooks/useItems";
-
+import useCart from "../Hooks/useCart";
+// import {useItems, useCart} from "../Hooks"
 import "../style/index.css";
+import { addCartItem } from "../api/cart";
 
 export default function Items() {
+  const { cartItems } = useCart();
   const { items } = useItems();
-  console.log("items?", items)
+  const [quantity, setQuantity] = useState("");
   const itemsToDisplay = items.map((item, i) => {
     return (
       <div className="wrapper">
         <div className="itemCard" key={`Key ${i}`} id={item.id}>
-          {/* CURRENTLY FOR FETCHSINGLEITEM(E.TARGET.ID) TO WORK EACH CHILD NEEDS THIS ID */}
           <h4 id={item.id}>{item.id}</h4>
           <span>
             <img id={item.id} src={item.imgUrl} />
@@ -21,6 +23,23 @@ export default function Items() {
           <h6 id={item.id}>Floor: {item.floorId}</h6>
           <h6 id={item.id}>Type: {item.type}</h6>
           <a href={`/items/${item.id}`}>View Item</a>
+          <span>
+            <form
+              onSubmit={async (event) => {
+                event.preventDefault();
+                await addCartItem(item.id, cartItems[0].id, quantity);
+                console.log("past the block");
+              }}
+            >
+              <input
+                type="number"
+                placeholder="Quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+              <button type="submit">Add to Cart</button>
+            </form>
+          </span>
         </div>
       </div>
     );

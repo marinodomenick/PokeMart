@@ -6,15 +6,18 @@ import ItemsProvider from "./components/ItemsProvider";
 import "./style/index.css";
 import AuthProvider from "./components/AuthProvider";
 import UsersProvider from "./components/UsersProvider";
+import CartProvider from "./components/CartProvider";
 
 ReactDOM.render(
   <AuthProvider>
     <UsersProvider>
-      <BrowserRouter>
-        <ItemsProvider>
-          <App />
-        </ItemsProvider>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <ItemsProvider>
+            <App />
+          </ItemsProvider>
+        </BrowserRouter>
+      </CartProvider>
     </UsersProvider>
   </AuthProvider>,
 
