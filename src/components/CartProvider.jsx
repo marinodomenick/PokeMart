@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAuth from "../Hooks/useAuth";
-import { fetchAllCartItems } from "../api/cart";
+import { fetchAllCartItems } from "../axios-services/index";
 import CartContext from "../Context/CartContext";
 // import { useParams } from "react-router-dom";
 import { getMe } from "../axios-services";
