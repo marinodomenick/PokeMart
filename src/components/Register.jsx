@@ -28,6 +28,11 @@ const Register = () => {
           );
           console.log("outcome of login response: ", registerResponse);
           if (registerResponse.user) {
+            await createNewCart(
+              registerResponse.user.id,
+              0,
+              registerResponse.user.address
+            );
             setErrorMessage("");
             setUser(registerResponse.user);
             setAddress("");
@@ -39,11 +44,7 @@ const Register = () => {
               registerResponse.user.address,
               "HEYOP"
             );
-            await createNewCart(
-              registerResponse.user.id,
-              0,
-              registerResponse.user.address
-            );
+
             navigate("/home");
           } else {
             setErrorMessage(
