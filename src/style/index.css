@@ -24,9 +24,9 @@
 body {
   font-family: 'Chakra Petch', sans-serif;
   box-sizing: border-box;
-  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/737365ba-5550-41f7-a303-56f0f4aa08f6/dfbw2oz-50640931-96d9-4179-8c74-4427c3973450.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzczNzM2NWJhLTU1NTAtNDFmNy1hMzAzLTU2ZjBmNGFhMDhmNlwvZGZidzJvei01MDY0MDkzMS05NmQ5LTQxNzktOGM3NC00NDI3YzM5NzM0NTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZYTKRHQq85Rdrmrz3LiSUraULD5eOuegbpCdaPowHtA);
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/737365ba-5550-41f7-a303-56f0f4aa08f6/dfbynnn-2dc9a394-a471-4006-ac29-7cdcf4a95e79.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzczNzM2NWJhLTU1NTAtNDFmNy1hMzAzLTU2ZjBmNGFhMDhmNlwvZGZieW5ubi0yZGM5YTM5NC1hNDcxLTQwMDYtYWMyOS03Y2RjZjRhOTVlNzkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.78qsualKjgUHm9zQaDbljcgz4v_QtrAYYdrBUi3UMS0);
   background-repeat: repeat;
-  background-size: 130px;
+  background-size: 160px;
 }
 
 :root {
@@ -129,7 +129,9 @@ html {
   justify-content: center;
   align-items: center; */
   color: rgb(252, 255, 240);
-  font-size: 30px
+  font-size: 30px;
+  text-shadow:2px 2px rgb(15, 45, 80);
+  margin-left: 270px
 }
 
 .cart {
@@ -147,6 +149,8 @@ html {
 button {
   border: solid 1px rgb(110, 45, 50);
   background-color: rgb(216, 107, 116);
+  color:rgb(85, 22, 51);
+  font-family: 'Oxanium', cursive;
 }
 
 button:hover {
@@ -160,15 +164,33 @@ button:hover {
   font-size: 15px;
 }
 
+.smolivGardenImg {
+  padding-right: 20px;
+}
+
 .teamGalactic {
-  border: 5px rgb(27, 70, 95) solid;
+  /* border: 5px rgb(27, 70, 95) solid; */
+  font-family: 'Silkscreen', cursive;
   display: flex;
   height: 36vh;
   width: 25vw;
   flex-direction: column;
  align-items: center;
-  background-color: rgb(19, 22, 31);
-  color: rgb(158, 203, 255)
+  background-image: url(https://t4.ftcdn.net/jpg/02/89/72/69/360_F_289726988_cF9wzIATeSAOBxCg23NqnLeaKVfXWvdy.jpg);
+  color: rgb(255, 255, 255);
+}
+
+.slowpokeTails {
+  float: right;
+  padding-left: 20px
+}
+
+.imgs {
+  padding-left: 20px;
+  display: flex;
+  /* justify-content: baseline;
+  align-items: baseline;
+  float:left; */
 }
 
 h6 {
@@ -187,7 +209,6 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 2
 }
 
 body {
@@ -230,6 +251,28 @@ body {
 .myAcc {
   background-color: #78b3c7;
   border: solid 1px rgb(55, 74, 109);
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border: rgb(204, 105, 105) 2px solid;
+  text-shadow: 2px 2px rgb(252, 216, 216);
+  font-family: 'Oxanium', cursive;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  text-shadow: 1px 1px rgb(255, 255, 255)
+}
+
+.welcome {
+  color: black;
+  size: 30px;
+  background-color: rgb(243, 219, 219);
 }
 
 .itemCard {

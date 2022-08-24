@@ -24,7 +24,7 @@ const HNavBar = () => {
        
         </div>
         <div className="cart">
-        <Link to="/cart">Cart Link</Link>
+        <Link to="/cart">Cart</Link>
         </div>
     </nav>
   )
