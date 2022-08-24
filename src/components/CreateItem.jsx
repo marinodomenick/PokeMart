@@ -81,7 +81,8 @@ const CreateItem = () => {
         />
         <button type="submit">Create Item</button>
       </form>
-      <Link to="/items">Cancel</Link>
+      <div className="cancelButton">
+      <Link to="/items">Cancel</Link></div>
     </div>
   );
 };

@@ -25,8 +25,7 @@ export default function SingleItem() {
 
   return (
     <>
-      <div className="itemCard">
-        <div>Single Item Page</div>
+      <div className="singleItemCard">
         {user.isAdmin ? (
           <button
             onClick={() => {
@@ -49,11 +48,13 @@ export default function SingleItem() {
             Delete Item
           </button>
         ) : null}
-        <h2>{singleItem.name}</h2>
-        <h4>
-          Price:{singleItem.price} Stock:{singleItem.stock}
-        </h4>
-        <h4>{singleItem.description}</h4>
+        <span>
+            <img className="singleItemImg" id={singleItem.id} src={singleItem.imgUrl} />
+          </span>
+        <h2 className="singleItemName">{singleItem.name}</h2>
+        <h4 className="singleItemPrice"> Price:{singleItem.price}</h4>
+        <h4 className="singleItemStock"> Stock:{singleItem.stock}</h4>
+        <h4 className="singleItemDesc">{singleItem.description}</h4>
       </div>
     </>
   );

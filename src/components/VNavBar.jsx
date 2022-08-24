@@ -1,12 +1,16 @@
 //floors
 import { Link } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 function VNavBar() {
+  const { user } = useAuth()
   return (
     <nav className="vNavi">
-      <Link id="Link" to="/">
-        Home
-      </Link>
+      <div className="myAccLink">
+      { user.id ? <Link to="/myaccount">My Account</Link> : <Link to="/login">My Account</Link> }
+      </div>
+      <br/>
+      <div className="floors">
       <Link id="Link" to="/items/floor/1">
         Floor 1
       </Link>
@@ -31,6 +35,7 @@ function VNavBar() {
       <Link id="Link" to="/cart">
         Cart
       </Link>
+      </div>
     </nav>
   );
 }

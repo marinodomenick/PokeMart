@@ -39,14 +39,14 @@ export default function F1() {
         return (
           <div className="wrapper">
             <h4 key={`Key: ${index}`} className="itemCard">
-              <div>
+              <div className="itemName">
                 {item.name} <img id={item.id} src={item.imgUrl} />
               </div>
 
-              <div>
+              <div className="itemPrice">
                 Price: {item.price}₽ Stock: {item.stock}
               </div>
-              <a href={`/items/${item.id}`}>View Item</a>
+              <a className="viewItem" href={`/items/${item.id}`}>View Item</a>
             </h4>
           </div>
         );

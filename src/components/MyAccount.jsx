@@ -18,7 +18,7 @@ const MyAccount = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className='myAcc'>
       {" "}
       My Account <br />
       <Link to="/editaccount">Edit Account Information</Link>
@@ -31,8 +31,6 @@ const MyAccount = () => {
         {userData?.address}
         <br />
         {userData?.email}
-        <br />
-        {userData?.orders}
         <br />
         {userData?.reviews}
       </div>
