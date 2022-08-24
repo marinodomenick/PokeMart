@@ -18,6 +18,8 @@ import {
   AllUsers,
   EditItem,
   CreateItem,
+  Cart,
+  Purchase,
 } from "../components";
 import useAuth from "../Hooks/useAuth";
 
@@ -62,6 +64,8 @@ const App = () => {
           {user.isAdmin ? (
             <Route path="/createitem" element={<CreateItem />} />
           ) : null}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/purchase" element={<Purchase />} />
         </Routes>
         </div>
       </div>

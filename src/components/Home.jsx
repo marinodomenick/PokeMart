@@ -6,7 +6,6 @@ const Home = () => {
   const { user } = useAuth();
   return (
     <div>
-      {user.isAdmin ? <Link to="/createitem">Create a New Item</Link> : null}
       <span>Home, cool adssssssss</span>
     </div>
   );

@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { updateUser } from '../axios-services'
-import useAuth from '../Hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { updateUser } from "../axios-services";
+import useAuth from "../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const EditAccount = () => {
   const { user, setUser } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // console.log("the user is: ", user)
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   return (
     <div className="updateUser">
@@ -78,6 +78,6 @@ const EditAccount = () => {
       </form>
     </div>
   );
-}
+};
 
-export default EditAccount
+export default EditAccount;

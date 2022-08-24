@@ -10,6 +10,8 @@ export { default as SingleItem } from "./SingleItem";
 export { default as Home } from "./Home";
 export { default as HNavBar } from "./HNavBar";
 export { default as VNavBar } from "./VNavBar";
+export { default as Cart } from "./Cart";
+export { default as Purchase } from "./Purchase";
 export { default as AllUsers } from "./AllUsers";
 export { default as EditItem } from "./EditItem";
 export { default as CreateItem } from "./CreateItem";

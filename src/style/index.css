@@ -318,3 +318,6 @@ a:active {
   cursor: url(https://cur.cursors-4u.net/games/gam-6/gam558.cur), auto !important;
 }
 
+.Error {
+  color: red;
+}
