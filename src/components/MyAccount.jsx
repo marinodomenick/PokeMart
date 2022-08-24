@@ -32,8 +32,6 @@ const MyAccount = () => {
         <br />
         {userData?.email}
         <br />
-        {userData?.orders}
-        <br />
         {userData?.reviews}
       </div>
       {user.isAdmin ? <Link to="/allusers">View all users</Link> : null}
