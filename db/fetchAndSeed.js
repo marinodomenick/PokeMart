@@ -7,12 +7,11 @@ const fetchAndSeedItems = async () => {
   const { data } = await axios.get(
     `https://pokeapi.co/api/v2/item?offset=0&limit=1607`
   );
-  //   console.log(data.results);
+
   console.log("...Fetching single items");
   const items = await Promise.all(
     data.results.map(async (item) => {
       const { data } = await axios.get(item.url);
-      // console.log("Single Item from API", data);
       const newItemObj = {
         name: data.name,
         type: data.category.name,
@@ -22,7 +21,6 @@ const fetchAndSeedItems = async () => {
         imgUrl: data.sprites.default,
         floorId: categoryToFloor(data.category.name),
       };
-      // console.log("Single item after reformatting", newItemObj);
       return newItemObj;
     })
   );
