@@ -43,7 +43,6 @@ const App = () => {
         {/* </div> */}
         </div>
         <div className="vertContent">
-        <h2 className="floorHeader">1F - Trainer Zone</h2>
         <Routes>
           <Route path="/items" element={<Items />} />
           <Route path="/items/:id" element={<SingleItem />} />

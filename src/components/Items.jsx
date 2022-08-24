@@ -11,7 +11,7 @@ export default function Items() {
       <div className="wrapper">
         <div className="itemCard" key={`Key ${i}`} id={item.id}>
           {/* CURRENTLY FOR FETCHSINGLEITEM(E.TARGET.ID) TO WORK EACH CHILD NEEDS THIS ID */}
-          <h4 id={item.id}>{item.id}</h4>
+          {/* <h4 id={item.id}></h4> */}
           <span>
             <img className="itemImg" id={item.id} src={item.imgUrl} />
           </span>
@@ -20,7 +20,7 @@ export default function Items() {
           <h5 className="itemStock" id={item.id}>Stock: {item.stock}</h5>
           <h6 className="itemFloor" id={item.id}>Floor: {item.floorId}</h6>
           <h6 className="itemType" id={item.id}>Type: {item.type}</h6>
-          <a href={`/items/${item.id}`}>View Item</a>
+          <a className="viewItem" href={`/items/${item.id}`}>View Item</a>
         </div>
       </div>
     );

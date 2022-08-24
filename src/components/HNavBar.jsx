@@ -17,9 +17,11 @@ const HNavBar = () => {
         </div>
         <div className="hnav">
           <div className='banner'> Welcome to the Department Store!</div>
+            <div className="loginLinks"></div>
         { user.id ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>}
         { user.id ? <h4>{user.username}</h4> : <Link to="/register">Register</Link> }
-        <div>Cart Link</div>
+        <div className="loginLinks"></div>
+        <div className="cart">Cart Link</div>
         </div>
     </nav>
   )

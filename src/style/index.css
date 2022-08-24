@@ -22,6 +22,7 @@
   box-sizing: border-box;
 }
 body {
+  font-family: 'Chakra Petch', sans-serif;
   box-sizing: border-box;
   background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/737365ba-5550-41f7-a303-56f0f4aa08f6/dfbw2oz-50640931-96d9-4179-8c74-4427c3973450.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzczNzM2NWJhLTU1NTAtNDFmNy1hMzAzLTU2ZjBmNGFhMDhmNlwvZGZidzJvei01MDY0MDkzMS05NmQ5LTQxNzktOGM3NC00NDI3YzM5NzM0NTAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZYTKRHQq85Rdrmrz3LiSUraULD5eOuegbpCdaPowHtA);
   background-repeat: repeat;
@@ -121,11 +122,41 @@ html {
   justify-content: center;
 }
 
-/* .banner {
+.banner {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  color: rgb(252, 255, 240);
+  font-size: 30px
+}
+
+.cart {
+  color: white;
+  border: solid 1px rgb(110, 45, 50);
+  background-color: rgb(216, 107, 116);
   display: flex;
   align-items: center;
   justify-content: center;
-} */
+  width: 90px;
+  height: 90px;
+  float: right;
+}
+
+button {
+  border: solid 1px rgb(110, 45, 50);
+  background-color: rgb(216, 107, 116);
+}
+
+button:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.loginLinks {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 2
+}
 
 body {
   margin-left: 0;
@@ -235,12 +266,18 @@ body {
   font-family: 'Oxanium', cursive;
 }
 
+input {
+  display: flex;
+  font-size: 20px;
+}
+
 .itemCard:hover {
   background-color: #78b3c7;
 }
 
 button:hover {
-  background-color: rgb(120, 179, 199);
+  border-color: rgb(202, 135, 135);
+  background-color: rgb(255, 183, 183);
 }
 
 a:hover, a:visited:hover {
