@@ -4,13 +4,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oxanium&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarpanch&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
 * {
   /* font-family: 'Press Start 2P', cursive; */
   /* font-family: 'Chakra Petch', sans-serif; */
   /* font-family: 'Orbitron', sans-serif; */
   /* font-family: 'Quantico', sans-serif; */
-  font-family: 'Oxanium', cursive;
+  /* font-family: 'Oxanium', cursive; */
+  /* font-family: 'Silkscreen', cursive; */
+  /* font-family: 'VT323', monospace; */
+  /* font-family: 'Sarpanch', sans-serif; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -88,6 +94,7 @@ html {
   /* align-items: space-between; */
   justify-content: space-between;
   flex-direction: column;
+  font-family: 'Quantico', sans-serif;
 }
 
 .vNavi > Link {
@@ -153,10 +160,11 @@ body {
   max-height: 300px;
   float: right;
   padding: 15px;
-  font-size: 15px;
+  font-size: 20px;
   box-sizing: content-box;
   overflow-wrap: break-word;
   text-shadow: .5px .5px #80e1ff;
+
 }
 
 .singleItemCard {
@@ -169,10 +177,62 @@ body {
   flex-wrap: wrap;
   border-style:double;
   border-color: rgb(24, 76, 119);
-  min-width: 300px;
-  max-height: 300px;
+  min-width: 150px;
+  max-width: 600px;
+  min-height: 400px;
   float: right;
   padding: 15px
+}
+
+.itemImg {
+  height: 40px;
+  width: 40px;
+}
+
+.singleItemImg {
+  min-width: 70px;
+  min-height: 70px;
+  max-width: 300px;
+  max-height: 300px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.singleItemName {
+  font-size:30px ;
+  font-family: 'Quantico', sans-serif;
+}
+
+.itemName {
+  font-size: 20px;
+  font-family: 'Quantico', sans-serif;
+}
+
+.itemPrice, .itemStock, .itemFloor, .itemType, .viewItem {
+  font-family: 'Oxanium', cursive;
+  font-size:12px;
+}
+
+.singleItemPrice {
+  /* display: flex;
+  align-items: baseline;
+  justify-content: flex-end; */
+  float: right;
+  font-family: 'Oxanium', cursive;
+}
+
+.singleItemStock {
+  /* display: flex;
+  align-items: baseline;
+  justify-content: flex-end; */
+  float: right;
+  font-family: 'Oxanium', cursive;
+}
+
+.singleItemDesc {
+  font-family: 'Oxanium', cursive;
 }
 
 .itemCard:hover {
