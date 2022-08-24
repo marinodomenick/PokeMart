@@ -183,11 +183,13 @@ export const purchaseCart = async (orderId) => {
 //-----------create new cart------------
 export const createNewCart = async (userId, totalPrice, shippingAddress) => {
   try {
+    console.log("CreateNewCart running", userId, totalPrice, shippingAddress);
     const { data } = await axios.post(`/api/cart`, {
       userId,
       totalPrice,
       shippingAddress,
     });
+    console.log(data, "The data");
     return data;
   } catch (error) {
     console.error(error);

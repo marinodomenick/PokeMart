@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { registerUser } from "../axios-services/index";
+import { createNewCart, registerUser } from "../axios-services/index";
 import useAuth from "../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { setUser } = useAuth();
+  const { setUser, user } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="register">
       {errorMessage ? <h4>{errorMessage}</h4> : null}
@@ -26,7 +26,7 @@ const Register = () => {
             email,
             address
           );
-          console.log("outcome of login response: ", registerResponse)
+          console.log("outcome of login response: ", registerResponse);
           if (registerResponse.user) {
             setErrorMessage("");
             setUser(registerResponse.user);
@@ -34,10 +34,21 @@ const Register = () => {
             setEmail("");
             setPassword("");
             setUsername("");
-
-            navigate("/home")
+            console.log(
+              registerResponse.user.id,
+              registerResponse.user.address,
+              "HEYOP"
+            );
+            await createNewCart(
+              registerResponse.user.id,
+              0,
+              registerResponse.user.address
+            );
+            navigate("/home");
           } else {
-            setErrorMessage("Error creating account. Passwords must be at least 8 characters long. You may need a different username/email.")
+            setErrorMessage(
+              "Error creating account. Passwords must be at least 8 characters long. You may need a different username/email."
+            );
           }
         }}
       >
