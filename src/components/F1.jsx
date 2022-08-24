@@ -19,25 +19,10 @@ export default function F1() {
 
   return (
     <>
-      <button
-        onClick={(e) => {
-          setPage(() => page - 1);
-        }}
-        disabled={page === 1}
-      >
-        Previous
-      </button>
-      <button
-        onClick={(e) => {
-          setPage(() => page + 1);
-        }}
-        disabled={floorItems.length < 30}
-      >
-        Next
-      </button>
+      <div className="wrapper">
       {floorItems.map((item, index) => {
         return (
-          <div className="wrapper">
+          <div className="f1Wrapper">
             <h4 key={`Key: ${index}`} className="itemCard">
               <div className="itemName">
                 {item.name} <img id={item.id} src={item.imgUrl} />
@@ -51,7 +36,8 @@ export default function F1() {
           </div>
         );
       })}
-      <button
+      <div className="navButtons">
+      <button className="navButton"
         onClick={(e) => {
           setPage(() => page - 1);
         }}
@@ -59,7 +45,7 @@ export default function F1() {
       >
         Previous
       </button>
-      <button
+      <button className="navButton"
         onClick={(e) => {
           setPage(() => page + 1);
         }}
@@ -67,6 +53,8 @@ export default function F1() {
       >
         Next
       </button>
+      </div>
+      </div>
     </>
   );
 }

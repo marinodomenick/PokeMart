@@ -15,13 +15,16 @@ const HNavBar = () => {
         }}
          src="https://cdn.dribbble.com/users/56076/screenshots/2518329/pokemon_pokemart_tag_dribbble.jpg" alt="deptStoreLogo"/></Link>
         </div>
+        <div className='banner'> Welcome to the Department Store!</div>
         <div className="hnav">
-          <div className='banner'> Welcome to the Department Store!</div>
             <div className="loginLinks"></div>
         { user.id ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link>}
         { user.id ? <h4>{user.username}</h4> : <Link to="/register">Register</Link> }
         <div className="loginLinks"></div>
-        <div className="cart">Cart Link</div>
+       
+        </div>
+        <div className="cart">
+        <Link to="/cart">Cart Link</Link>
         </div>
     </nav>
   )

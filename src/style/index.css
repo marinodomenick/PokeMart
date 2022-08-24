@@ -60,10 +60,12 @@ html {
 .hNavi {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   background-color: rgb(80, 149, 180);
   border: solid 1px rgb(55, 74, 109);
-  margin-bottom: 15px
+  margin-bottom: 15px;
+  width: 99.1vw
 }
 
 .vNavi {
@@ -151,6 +153,36 @@ button:hover {
   background-color: rgb(255, 255, 255);
 }
 
+.updateButton {
+  padding: 3px;
+  padding-left: 9px;
+  padding-right: 9px;
+  font-size: 15px;
+}
+
+.teamGalactic {
+  border: 5px rgb(27, 70, 95) solid;
+  display: flex;
+  height: 36vh;
+  width: 25vw;
+  flex-direction: column;
+ align-items: center;
+  background-color: rgb(19, 22, 31);
+  color: rgb(158, 203, 255)
+}
+
+h6 {
+  font-size: 7px;
+}
+
+.cartButton {
+  padding: 3px;
+  padding-left: 9px;
+  padding-right: 9px;
+  font-size: 15px;
+  margin: 5px
+}
+
 .loginLinks {
   display: flex;
   justify-content: center;
@@ -166,11 +198,34 @@ body {
 }
 
 .wrapper {
-  display: inline-flex;
-
+  /* display: inline-flex; */
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  float: left;
 }
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 70px;
+  margin: 30px;
+  background-color: rgb(241, 212, 147);
+  border: solid 1px rgb(196, 125, 93);
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78vw
+}
+
+/* .f1Wrapper {
+  min-height: 200px;
+} */
 
 .myAcc {
   background-color: #78b3c7;
@@ -180,22 +235,21 @@ body {
 .itemCard {
   background-color: rgb(90, 162, 196);
   display: flex;
-  gap: 20px;
+  gap: 5px;
   margin-left: 10px;
   margin-bottom: 20px;
   flex-direction: column;
   flex-wrap: wrap;
   border-style:double;
   border-color: rgb(24, 76, 119);
-  min-width: 200px;
+  min-width: 180px;
+  min-height: 140px;
   max-height: 300px;
-  float: right;
   padding: 15px;
   font-size: 20px;
   box-sizing: content-box;
   overflow-wrap: break-word;
   text-shadow: .5px .5px #80e1ff;
-
 }
 
 .singleItemCard {
@@ -266,9 +320,20 @@ body {
   font-family: 'Oxanium', cursive;
 }
 
-input {
+.itemInput {
+  display: flex;
+  font-size: 15px
+}
+
+.input {
   display: flex;
   font-size: 20px;
+}
+
+.itemForm {
+  display: flex;
+  box-sizing: content-box;
+  
 }
 
 .itemCard:hover {

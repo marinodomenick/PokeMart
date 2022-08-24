@@ -69,7 +69,7 @@ export default function Cart() {
                   );
                 })}
                 <span>
-                  <button
+                  <button className="cartButton"
                     onClick={async (event) => {
                       event.preventDefault();
                       await deleteCart(cartItems[0].id);
@@ -77,7 +77,7 @@ export default function Cart() {
                   >
                     Clear Cart
                   </button>
-                  <button
+                  <button className="cartButton"
                     onClick={async (event) => {
                       event.preventDefault();
 
