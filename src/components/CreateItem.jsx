@@ -31,7 +31,7 @@ const CreateItem = () => {
             imgUrl
           );
           setItem(newItemResponse);
-          console.log("the newly created item is: ", item);
+
           setName("");
           setType("");
           setDescription("");

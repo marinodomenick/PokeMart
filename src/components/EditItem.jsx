@@ -18,12 +18,12 @@ const EditItem = () => {
   useEffect(() => {
     const getSingleItem = async () => {
       const mysingleItem = await fetchSingleItem(id);
-      console.log("the mysingleItem from the useEffect is: ", mysingleItem);
+
       setSingleItem(mysingleItem);
     };
     getSingleItem();
   }, []);
-  console.log("the singleItem is: ", singleItem);
+
   return (
     <div>
       <form

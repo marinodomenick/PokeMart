@@ -16,7 +16,7 @@ export default function Cart() {
   let [isFulfilled, setIsFulfilled] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
-  console.log(cartItems, "the cart itesm");
+
   return cartItems.length !== 0 ? (
     <>
       <div>
@@ -45,7 +45,6 @@ export default function Cart() {
                           onSubmit={async (event) => {
                             event.preventDefault();
                             await editCartQuantity(orderitem.id, quantity);
-                            console.log("U MADE IT PAST THE BLOCK");
                           }}
                         >
                           <input
@@ -59,7 +58,7 @@ export default function Cart() {
                         <button
                           onClick={async (event) => {
                             event.preventDefault();
-                            console.log("del button pressed");
+
                             await deleteCartItem(orderitem.id);
                           }}
                         >
@@ -81,14 +80,9 @@ export default function Cart() {
                   <button
                     onClick={async (event) => {
                       event.preventDefault();
-                      console.log("purchase button");
-                      //CANT SWITCH ACTIVE CART TO ISFULFILLED TRUE
-                      //BUT CAN CREATE A NEW CART ISFULFILLED FALSE
-                      // setIsFulfilled(true);
-                      // console.log(isFulfilled, "before should be true"); //CURRENLLY FALSE. PROBLEM HERE
+
                       await purchaseCart(cartItems[0].id);
-                      // setIsFulfilled(false);
-                      // console.log(isFulfilled, "after, should be false");
+
                       await createNewCart(user.id, totalPrice, user.address);
                       navigate("/purchase");
                     }}

@@ -23,7 +23,6 @@ function ItemCard({ item }) {
             onSubmit={async (event) => {
               event.preventDefault();
               await addCartItem(item.id, cartItems[0].id, quantity);
-              console.log("past the block");
             }}
           >
             <input

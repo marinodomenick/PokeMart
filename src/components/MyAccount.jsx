@@ -16,7 +16,7 @@ const MyAccount = () => {
     }
     getData();
   }, [user]);
-  console.log("user data", userData);
+
   return (
     <div>
       {" "}

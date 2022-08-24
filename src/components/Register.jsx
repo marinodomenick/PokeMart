@@ -26,7 +26,7 @@ const Register = () => {
             email,
             address
           );
-          console.log("outcome of login response: ", registerResponse);
+
           if (registerResponse.user) {
             await createNewCart(
               registerResponse.user.id,
@@ -39,11 +39,6 @@ const Register = () => {
             setEmail("");
             setPassword("");
             setUsername("");
-            console.log(
-              registerResponse.user.id,
-              registerResponse.user.address,
-              "HEYOP"
-            );
 
             navigate("/home");
           } else {
