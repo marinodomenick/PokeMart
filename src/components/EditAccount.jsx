@@ -11,7 +11,7 @@ const EditAccount = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // console.log("the user is: ", user)
+
   const navigate = useNavigate();
 
   return (

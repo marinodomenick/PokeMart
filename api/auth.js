@@ -44,7 +44,6 @@ authRouter.post("/login", async (req, res, next) => {
         username: username,
       },
     });
-    console.log(user);
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (validPassword) {
@@ -56,7 +55,6 @@ authRouter.post("/login", async (req, res, next) => {
         httpOnly: true,
         signed: true,
       });
-
 
       res.send({ user });
     }

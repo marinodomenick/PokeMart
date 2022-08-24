@@ -17,7 +17,6 @@ cartRouter.patch("/orders/:orderId", authRequired, async (req, res, next) => {
         isFulfilled: true,
       },
     });
-    console.log(userOrderComplete, "for matt");
     res.send(userOrderComplete);
   } catch (error) {
     next(error);

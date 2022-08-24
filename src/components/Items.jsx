@@ -15,7 +15,7 @@ export default function Items() {
       </div>
     );
   });
-  console.log("The Items component has rendered");
+
   return (
     <div>
       <button

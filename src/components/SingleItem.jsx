@@ -14,7 +14,7 @@ export default function SingleItem() {
   const [singleItem, setSingleItem] = useState({});
   let { id } = useParams();
   const navigate = useNavigate();
-  console.log(id, "we know this works");
+
   useEffect(() => {
     const getSingleItem = async () => {
       const mysingleItem = await fetchSingleItem(id);
