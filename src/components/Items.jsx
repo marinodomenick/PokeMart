@@ -18,24 +18,9 @@ export default function Items() {
 
   return (
     <div>
-      <button
-        onClick={(e) => {
-          setPage(() => page - 1);
-        }}
-        disabled={page === 1}
-      >
-        Previous
-      </button>
-      <button
-        onClick={(e) => {
-          setPage(() => page + 1);
-        }}
-        disabled={items.length < 30}
-      >
-        Next
-      </button>
       {itemsToDisplay}
-      <button
+      <div className="navButtons">
+      <button className="navButton"
         onClick={(e) => {
           setPage(() => page - 1);
         }}
@@ -43,7 +28,7 @@ export default function Items() {
       >
         Previous
       </button>
-      <button
+      <button className="navButton"
         onClick={(e) => {
           setPage(() => page + 1);
         }}
@@ -51,6 +36,7 @@ export default function Items() {
       >
         Next
       </button>
+      </div>
     </div>
   );
 }
