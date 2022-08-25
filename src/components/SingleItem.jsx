@@ -42,15 +42,19 @@ export default function SingleItem() {
               await destroyItem(id);
               const newItems = await fetchAllItems();
               setItems(newItems);
-              navigate("/items");
+              navigate("/home");
             }}
           >
             Delete Item
           </button>
         ) : null}
         <span>
-            <img className="singleItemImg" id={singleItem.id} src={singleItem.imgUrl} />
-          </span>
+          <img
+            className="singleItemImg"
+            id={singleItem.id}
+            src={singleItem.imgUrl}
+          />
+        </span>
         <h2 className="singleItemName">{singleItem.name}</h2>
         <h4 className="singleItemPrice"> Price:{singleItem.price}</h4>
         <h4 className="singleItemStock"> Stock:{singleItem.stock}</h4>

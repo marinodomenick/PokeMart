@@ -41,7 +41,7 @@ const CreateItem = () => {
           setImgUrl("");
           const newItems = await fetchAllItems();
           setItems(newItems);
-          navigate(`/items`);
+          navigate(`/home`);
         }}
       >
         <input
@@ -82,7 +82,8 @@ const CreateItem = () => {
         <button type="submit">Create Item</button>
       </form>
       <div className="cancelButton">
-      <Link to="/items">Cancel</Link></div>
+        <Link to="/items">Cancel</Link>
+      </div>
     </div>
   );
 };
